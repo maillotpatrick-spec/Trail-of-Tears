@@ -1084,10 +1084,9 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function beep(freq=520,dur=.07){if(!soundOn)return;try{const C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;o.type='sine';o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.06,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+dur);o.start();o.stop(c.currentTime+dur)}catch(e){}}
 
 function show(id){
-  ['screenHome','screen1','screenTransition','screen2','screen3'].forEach(x=>{
-    const el=document.getElementById(x);
-    if(el) el.classList.toggle('hidden',x!==id);
-  });
+  document.querySelectorAll('main > .screen').forEach(el=>el.classList.add('hidden'));
+  const target=document.getElementById(id);
+  if(target)target.classList.remove('hidden');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1846,9 +1845,10 @@ function chapterMissionPercent(missionId){
     return Math.round(Object.values(answers).filter(v=>String(v||'').trim()).length/16*100);
   }
   if(missionId==='m7'){
-    const answers=activeProfile.gapAnswers||{};
-    if(activeProfile.gapChecked)return Math.min(100,Number(activeProfile.gapScore||0));
-    return Math.round(Object.values(answers).filter(v=>String(v||'').trim()).length/GAP_ITEMS.length*100);
+    const txt=String(activeProfile.m7Writing||'').trim();
+    const words=txt?txt.split(/\s+/).filter(Boolean).length:0;
+    const stars=m7Stars(words,txt,!!activeProfile.m7WritingChecked);
+    return stars*20;
   }
   return 0;
 }
@@ -1874,6 +1874,7 @@ function renderMissionDock(){
   setupChapterNavigation();
   updateChapterProgress();
   const list=$('#missionList');
+  if(!list){ console.warn('[Trail of Tears] #missionList is missing; navigation dock cannot render.'); return; }
   list.innerHTML='';
   MISSION_META.forEach(m=>{
     const row=document.createElement('div');
@@ -1911,7 +1912,12 @@ function renderMissionDock(){
     open.type='button';
     open.className='btn open-mission';
     open.textContent=activeMission===m.id?'Open now':'Open mission →';
-    open.addEventListener('click',()=>openMission(m.id));
+    open.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();openMission(m.id);});
+    row.addEventListener('click',(e)=>{
+      if(e.target.closest('button'))return;
+      openMission(m.id);
+    });
+    row.style.cursor='pointer';
     row.appendChild(open);
 
     list.appendChild(row);
@@ -1921,17 +1927,20 @@ function renderMissionDock(){
 async function verifyMissionCode(missionId,code,errorNode,button){
   openMission(missionId);
 }
-function syncMissionVisibility(){
-  const m3=$('#mission3Content');
-  const m4=$('#extensionQuiz');
-  const m5=$('#exitWritingMission');
-  const m6=$('#grammarMission');
-  const m7=$('#gapMission');
-  if(m3)m3.classList.remove('hidden');
-  if(m4)m4.classList.remove('hidden');
-  if(m5)m5.classList.remove('hidden');
-  if(m6)m6.classList.remove('hidden');
-  if(m7)m7.classList.remove('hidden');
+function syncMissionVisibility(selectedMission=null){
+  const sections={
+    m3:$('#mission3Content'),
+    m4:$('#extensionQuiz'),
+    m5:$('#exitWritingMission'),
+    m6:$('#grammarMission'),
+    m7:$('#gapMission')
+  };
+  Object.entries(sections).forEach(([id,el])=>{
+    if(!el)return;
+    // On the shared screen, show only the selected sub-mission.
+    // When no shared-screen mission is selected, keep all sections hidden.
+    el.classList.toggle('hidden', selectedMission!==id);
+  });
 }
 function requestMission(missionId){
   openMission(missionId);
@@ -1941,27 +1950,38 @@ function openMission(missionId){
   if(card){card.classList.add('open'); if(toggle)toggle.setAttribute('aria-expanded','true');}
   const meta=MISSION_META.find(m=>m.id===missionId);
   if(!meta)return;
+
   activeMission=missionId;
-  activeProfile.lastMission=missionId;
-  saveActiveProfile();
-  syncMissionVisibility();
+  // Navigation must work even before/without a stored learner profile.
+  if(activeProfile){
+    activeProfile.lastMission=missionId;
+    saveActiveProfile();
+  }
+
+  if(['m3','m4','m5','m6','m7'].includes(missionId)){
+    syncMissionVisibility(missionId);
+  }else{
+    syncMissionVisibility(null);
+  }
   renderMissionDock();
 
   if(missionId==='m2'){
     show('screenTransition');
+    setTimeout(()=>startRoutes(),350);
     return;
   }
+
   show(meta.target);
-  if(missionId==='m2'){
-    setTimeout(()=>startRoutes(),350);
-  }else if(missionId==='m4'){
-    setTimeout(()=>$('#extensionQuiz')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m5'){
-    setTimeout(()=>$('#exitWritingMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m6'){
-    setTimeout(()=>$('#grammarMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m7'){
-    setTimeout(()=>$('#gapMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  const targetByMission={
+    m3:'#mission3Content',
+    m4:'#extensionQuiz',
+    m5:'#exitWritingMission',
+    m6:'#grammarMission',
+    m7:'#gapMission'
+  };
+  const selector=targetByMission[missionId];
+  if(selector){
+    setTimeout(()=>document.querySelector(selector)?.scrollIntoView({behavior:'smooth',block:'start'}),120);
   }
 }
 
@@ -2014,7 +2034,7 @@ function registerStudent(){
   activeProfile.group=group;
   saveActiveProfile();
   $('#registrationOverlay').classList.add('hidden');
-  syncMissionVisibility();
+  syncMissionVisibility(activeMission);
   renderMissionDock();
 
   const draft=$('#exitWriting');
@@ -2026,15 +2046,17 @@ function registerStudent(){
   show('screenHome');
 }
 function initStudentAccess(){
-  $('#registerBtn').addEventListener('click',registerStudent);
+  const registerBtn=$('#registerBtn');
+  if(registerBtn) registerBtn.addEventListener('click',registerStudent);
   ['studentName','studentClass'].forEach(id=>{
-    $('#'+id).addEventListener('keydown',e=>{if(e.key==='Enter')registerStudent()});
+    const field=$('#'+id);
+    if(field) field.addEventListener('keydown',e=>{if(e.key==='Enter')registerStudent()});
   });
   const activeKey=localStorage.getItem(ACTIVE_PROFILE_STORE);
   const profiles=safeProfiles();
   if(activeKey && profiles[activeKey]){
     activeProfile=profiles[activeKey];
-    syncMissionVisibility();
+    syncMissionVisibility(activeMission);
     renderMissionDock();
     const draft=$('#exitWriting');
     if(draft && activeProfile.writing){
@@ -2580,56 +2602,71 @@ async function getAIWritingFeedback(showUpgrade=false){
   }
 }
 
-aiCheckBtn.addEventListener('click',()=>getAIWritingFeedback(false));
-aiUpgradeBtn.addEventListener('click',()=>{
+// --- v0.6.30 robust bootstrap: one optional feature must never disable navigation ---
+function safeRun(label,fn){
+  try{ fn(); }
+  catch(err){ console.error('[Trail of Tears] '+label+' failed:',err); }
+}
+function safeBind(selector,event,handler){
+  const el=typeof selector==='string'?$(selector):selector;
+  if(!el){ console.warn('[Trail of Tears] Missing optional element:',selector); return; }
+  el.addEventListener(event,handler);
+}
+
+// Initialise learner access/navigation first so the mission dock remains usable
+// even if a later optional activity has a browser-specific problem.
+safeRun('student access / navigation',initStudentAccess);
+
+safeBind(aiCheckBtn,'click',()=>getAIWritingFeedback(false));
+safeBind(aiUpgradeBtn,'click',()=>{
   if(lastAIFeedback){
     renderAIFeedback(lastAIFeedback,true);
-    aiStatus.textContent='B2 upgrade revealed. Compare it with your own version before deciding whether to use it.';
+    if(aiStatus) aiStatus.textContent='B2 upgrade revealed. Compare it with your own version before deciding whether to use it.';
   }else{
     getAIWritingFeedback(true);
   }
 });
-$('#exitResetBtn').addEventListener('click',resetExitWriting);
-$('#resetMission5Btn').addEventListener('click',resetExitWriting);
-exitWriting.addEventListener('input',()=>{
+safeBind('#exitResetBtn','click',resetExitWriting);
+safeBind('#resetMission5Btn','click',resetExitWriting);
+safeBind(exitWriting,'input',()=>{
   updateExitWordCount();
   if(activeProfile){activeProfile.writing=exitWriting.value;saveActiveProfile();renderMissionDock()}
   if(lastAIFeedback) clearAIWritingFeedback();
 });
-renderPronunciationLab();
-$('#listenAllTribesBtn').addEventListener('click',listenToAllTribes);
-$('#stopPronunciationBtn').addEventListener('click',stopPronunciation);
-renderQuiz();
-updateM1Progress();
-updateM2Progress();
-updateM4MissionProgress();
-updateM5Progress();
-renderGrammarMission();
-updateM6Progress();
-initGapMission();
-restoreGapMission();
-$('#checkGrammarABtn').addEventListener('click',()=>checkGrammarPart('A'));
-$('#checkGrammarBBtn').addEventListener('click',()=>checkGrammarPart('B'));
-$('#focusWrongABtn').addEventListener('click',()=>focusWrongGrammarPart('A'));
-$('#focusWrongBBtn').addEventListener('click',()=>focusWrongGrammarPart('B'));
-$('#resetGrammarABtn').addEventListener('click',()=>resetGrammarPart('A'));
-$('#resetGrammarBBtn').addEventListener('click',()=>resetGrammarPart('B'));
-$('#resetMission6Btn').addEventListener('click',resetMission6);
-initStudentAccess();
 
-$('#soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('#soundBtn').textContent=(soundOn?'🔊':'🔇')+' Sound';beep(600,.06)});
-$('#fullBtn').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
-$('#resetBtn').addEventListener('click',()=>{
-  resetMission1();
-  resetMission2();
-  resetMission3(false);
-  resetMission4();
-  resetExitWriting();
-  resetMission6();
-  resetMission7();
+safeRun('pronunciation lab',renderPronunciationLab);
+safeBind('#listenAllTribesBtn','click',listenToAllTribes);
+safeBind('#stopPronunciationBtn','click',stopPronunciation);
+safeRun('quiz',renderQuiz);
+safeRun('mission 1 progress',updateM1Progress);
+safeRun('mission 2 progress',updateM2Progress);
+safeRun('mission 4 progress',updateM4MissionProgress);
+safeRun('mission 5 progress',updateM5Progress);
+safeRun('grammar mission',renderGrammarMission);
+safeRun('mission 6 progress',updateM6Progress);
+safeRun('mission 7 init',initGapMission);
+safeRun('mission 7 restore',restoreGapMission);
+safeBind('#checkGrammarABtn','click',()=>checkGrammarPart('A'));
+safeBind('#checkGrammarBBtn','click',()=>checkGrammarPart('B'));
+safeBind('#focusWrongABtn','click',()=>focusWrongGrammarPart('A'));
+safeBind('#focusWrongBBtn','click',()=>focusWrongGrammarPart('B'));
+safeBind('#resetGrammarABtn','click',()=>resetGrammarPart('A'));
+safeBind('#resetGrammarBBtn','click',()=>resetGrammarPart('B'));
+safeBind('#resetMission6Btn','click',resetMission6);
+
+safeBind('#soundBtn','click',()=>{soundOn=!soundOn;const b=$('#soundBtn');if(b)b.textContent=(soundOn?'🔊':'🔇')+' Sound';beep(600,.06)});
+safeBind('#fullBtn','click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
+safeBind('#resetBtn','click',()=>{
+  safeRun('reset mission 1',resetMission1);
+  safeRun('reset mission 2',resetMission2);
+  safeRun('reset mission 3',()=>resetMission3(false));
+  safeRun('reset mission 4',resetMission4);
+  safeRun('reset mission 5',resetExitWriting);
+  safeRun('reset mission 6',resetMission6);
+  safeRun('reset mission 7',resetMission7);
   activeMission=null;
-  renderMissionDock();
-  show('screenHome');
+  safeRun('render mission dock',renderMissionDock);
+  safeRun('show home',()=>show('screenHome'));
 });
 </script>
 </body>
