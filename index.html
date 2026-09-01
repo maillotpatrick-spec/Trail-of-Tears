@@ -761,7 +761,7 @@ input.grammar-answer{min-height:auto}
         <div class="kicker">Writing target</div>
         <strong>400–500 words</strong>
         <span>B1+/B2 · clear, organised and historically accurate</span>
-        <div class="written-mini-note">Try to reuse the <strong>passive voice</strong> studied in Mission 6.</div>
+        <div class="written-mini-note"><strong>Grammar requirement:</strong> use at least <strong>4 passive-voice structures</strong> of your own.</div>
       </div>
     </div>
 
@@ -783,6 +783,7 @@ input.grammar-answer{min-height:auto}
         <textarea id="m7Writing" class="written-textarea" rows="12" placeholder="Write your 400–500 word recap here..."></textarea>
         <div class="written-underbar">
           <span id="m7WordCount">0 words</span>
+          <span id="m7PassiveCount">Passive voice: 0/4</span>
           <span id="m7SaveStatus">Draft saved automatically</span>
         </div>
         <div class="gap-actions">
@@ -798,16 +799,12 @@ input.grammar-answer{min-height:auto}
         <div class="written-chips">
           <span>forced removal</span><span>homeland</span><span>territory</span><span>displacement</span><span>dispossession</span><span>treaty</span><span>journey</span><span>hardships</span><span>suffering</span><span>ancestors</span><span>memory</span>
         </div>
-        <h3>Useful structures</h3>
-        <ul class="written-structures">
-          <li>were forced to…</li>
-          <li>were removed from…</li>
-          <li>were displaced…</li>
-          <li>their lands were taken…</li>
-          <li>during the journey…</li>
-          <li>as a consequence…</li>
-          <li>the Trail of Tears became a symbol of…</li>
-        </ul>
+        <h3>Grammar requirement</h3>
+        <div class="written-tip">
+          Use <strong>at least 4 different passive-voice structures</strong> in your recap.
+          Choose the verbs and tenses yourself. The passive structures must be relevant to the historical events you describe.
+          <strong>No passive structure is provided here:</strong> show that you can transfer what you learnt in Mission 6 independently.
+        </div>
         <div class="written-tip"><strong>Remember:</strong> do not simply list facts. Link your ideas into a coherent historical recap.</div>
       </aside>
     </div>
@@ -1017,6 +1014,7 @@ function updateM1Progress(){
     seen.size===5?'Explorer Cup unlocked!':'Explorer badge',
     seen.size===5?'You identified all five Southeastern homelands.':`Discover ${5-seen.size} more ${5-seen.size===1?'nation':'nations'}.`,
     seen.size===5);
+  if(seen.size===5)trackCompletionOnce('m1',100,{homelandsExplored:5});
   renderMissionDock();
 }
 function updateM2Progress(){
@@ -1028,6 +1026,7 @@ function updateM2Progress(){
     pct>=100?'Trail Tracker Cup unlocked!':'Trail tracker',
     directionCorrect?`${routeSeen.size}/${DATA.routes.length} routes explored · direction solved`:`${routeSeen.size}/${DATA.routes.length} routes explored · solve the direction challenge`,
     pct>=100);
+  if(pct>=100)trackCompletionOnce('m2',100,{routesExplored:routeSeen.size,directionSolved:directionCorrect});
   renderMissionDock();
 }
 function updateM3Progress(){
@@ -1043,6 +1042,10 @@ function updateM3Progress(){
   if(activeProfile && currentAnswered>0){
     activeProfile.mapQuizScore=currentScore;
     activeProfile.mapQuizAnswered=currentAnswered;
+    if(currentAnswered===quiz.length && !activeProfile.m3AttemptRecorded){
+      activeProfile.m3AttemptRecorded=true;
+      trackAttempt('m3',pct,score===quiz.length,{correct:score,total:quiz.length});
+    }
     saveActiveProfile();
   }
   renderMissionDock();
@@ -1573,6 +1576,12 @@ function applyGrammarPartResults(part,countAttempt=true){
 }
 function checkGrammarPart(part){
   applyGrammarPartResults(part,true);
+  const overall=grammarOverallFirstTry();
+  const allCorrect=GRAMMAR_QUESTIONS.every(q=>{
+    const card=document.querySelector(`[data-grammar-id="${q.id}"]`);
+    return card?.classList.contains('correct');
+  });
+  trackAttempt('m6',overall,allCorrect,{part,partFirstTry:grammarFirstTry[part],overallFirstTry:overall,allCorrect});
 }
 function focusWrongGrammarPart(part){
   const wrong=[...document.querySelectorAll(`[data-grammar-part="${part}"] .grammar-card.incorrect`)];
@@ -1639,8 +1648,27 @@ function m7Words(){
   const txt=el?el.value.trim():'';
   return txt?txt.split(/\s+/).filter(Boolean).length:0;
 }
+function m7PassiveCount(txt){
+  const patterns=[
+    /\b(?:was|were|is|are|am|be|been|being)\s+(?:\w+\s+){0,2}(?:ed|en)\b/gi,
+    /\b(?:was|were|is|are|am|be|been|being)\s+(?:taken|given|sent|made|built|found|held|kept|left|lost|told|known|seen|done|written|driven|chosen|broken|brought|bought|caught|fought|led|read|said|sold|taught|thought|won)\b/gi,
+    /\b(?:has|have|had)\s+been\s+(?:\w+\s+){0,2}(?:ed|en)\b/gi,
+    /\b(?:has|have|had)\s+been\s+(?:taken|given|sent|made|built|found|held|kept|left|lost|told|known|seen|done|written|driven|chosen|broken|brought|bought|caught|fought|led|read|said|sold|taught|thought|won)\b/gi,
+    /\b(?:can|could|may|might|must|should|would|will)\s+be\s+(?:\w+\s+){0,2}(?:ed|en)\b/gi,
+    /\b(?:can|could|may|might|must|should|would|will)\s+be\s+(?:taken|given|sent|made|built|found|held|kept|left|lost|told|known|seen|done|written|driven|chosen|broken|brought|bought|caught|fought|led|read|said|sold|taught|thought|won)\b/gi
+  ];
+  const found=[];
+  patterns.forEach(rx=>{
+    const matches=txt.match(rx)||[];
+    matches.forEach(m=>{
+      const norm=m.toLowerCase().replace(/\s+/g,' ').trim();
+      if(!found.includes(norm))found.push(norm);
+    });
+  });
+  return found.length;
+}
 function m7HasPassive(txt){
-  return /\b(?:was|were|is|are|has been|have been|had been)\s+(?:forced|removed|displaced|taken|relocated|signed|passed|escorted|sent|separated)\b/i.test(txt);
+  return m7PassiveCount(txt)>=4;
 }
 function m7Coverage(txt){
   return {
@@ -1665,6 +1693,8 @@ function updateM7WritingProgress(){
   const txt=el.value.trim();
   const words=m7Words();
   $('#m7WordCount').textContent=words+(words===1?' word':' words');
+  const passiveCount=m7PassiveCount(txt);
+  if($('#m7PassiveCount'))$('#m7PassiveCount').textContent=`Passive voice: ${Math.min(passiveCount,4)}/4`;
   const stars=m7Stars(words,txt,m7WritingChecked);
   const pct=stars*20;
   setMissionMeter('m7',pct,stars,5,
@@ -1691,14 +1721,19 @@ function checkM7Writing(){
   const txt=el.value.trim();
   const words=m7Words();
   const cov=m7Coverage(txt);
-  const passive=m7HasPassive(txt);
+  const passiveCount=m7PassiveCount(txt);
+  const passive=passiveCount>=4;
   m7WritingChecked=true;
+  const m7score=m7Stars(words,txt,true)*20;
+  trackAttempt('m7',m7score,m7score===100,{words,passiveCount,coverageCount});
   const feedback=$('#m7WritingFeedback');
   feedback.classList.remove('hidden');
   const lengthMsg=words<400?'Your recap is still short. Develop the key ideas with precise historical details and clear explanations.':words>500?'Your recap is longer than the target. Remove repetitions and keep the most relevant facts.':'Your length is appropriate for the task.';
   const coverageCount=Object.values(cov).filter(Boolean).length;
   const contentMsg=coverageCount===4?'You cover the four expected dimensions of the task.':`You currently cover ${coverageCount}/4 key dimensions. Check the task instructions and add what is missing.`;
-  const passiveMsg=passive?'You successfully reuse at least one passive structure.':'Try to reuse the passive voice, for example: “Native Americans were forced to leave their lands.”';
+  const passiveMsg=passive
+    ?`Passive voice requirement achieved: ${passiveCount}/4 or more structures detected.`
+    :`Passive voice: ${passiveCount}/4 structures detected. Add ${4-passiveCount} more passive structure${4-passiveCount===1?'':'s'} of your own.`;
   const org=/\b(first|then|during|after|because|therefore|as a consequence|finally|however)\b/i.test(txt)?'Your recap contains linking language that helps organise the ideas.':'Add a few linking words such as “during”, “because”, “as a consequence” or “however”.';
   feedback.innerHTML=`<h4>Writing feedback</h4><div class="written-feedback-grid">
     <div class="written-feedback-item"><strong>Content</strong>${contentMsg}</div>
@@ -1728,6 +1763,54 @@ const PROFILE_STORE='trailOfTearsStudentProfilesV2';
 const ACTIVE_PROFILE_STORE='trailOfTearsActiveProfileV2';
 let activeProfile=null;
 let activeMission=null;
+
+// --- v0.6.32 central classroom tracking ---
+const TRACKING_API='/api/track';
+function trackingPayloadBase(){
+  if(!activeProfile)return null;
+  return {
+    studentKey:activeProfile.key,
+    name:activeProfile.name,
+    group:activeProfile.group,
+    clientTime:new Date().toISOString(),
+    appVersion:'0.6.32'
+  };
+}
+function sendTrackingEvent(type,mission=null,data={}){
+  const base=trackingPayloadBase();
+  if(!base || location.protocol==='file:')return;
+  const body={...base,type,mission,...data};
+  fetch(TRACKING_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),keepalive:true})
+    .catch(()=>{}); // Tracking failure must never block the learner interface.
+}
+function trackRegistration(){
+  if(!activeProfile)return;
+  sendTrackingEvent('registration',null,{});
+}
+function trackMissionStarted(missionId){
+  if(!activeProfile || !missionId)return;
+  activeProfile.remoteStarted=activeProfile.remoteStarted||{};
+  if(activeProfile.remoteStarted[missionId])return;
+  activeProfile.remoteStarted[missionId]=new Date().toISOString();
+  saveActiveProfile();
+  sendTrackingEvent('started',missionId,{});
+}
+function trackAttempt(missionId,score,completed=false,details={}){
+  if(!activeProfile || !missionId)return;
+  sendTrackingEvent('attempt',missionId,{
+    score:Number.isFinite(Number(score))?Math.max(0,Math.min(100,Math.round(Number(score)))):null,
+    completed:!!completed,
+    details
+  });
+}
+function trackCompletionOnce(missionId,score=100,details={}){
+  if(!activeProfile)return;
+  activeProfile.remoteCompleted=activeProfile.remoteCompleted||{};
+  if(activeProfile.remoteCompleted[missionId])return;
+  activeProfile.remoteCompleted[missionId]=new Date().toISOString();
+  saveActiveProfile();
+  trackAttempt(missionId,score,true,details);
+}
 
 function safeProfiles(){
   try{return JSON.parse(localStorage.getItem(PROFILE_STORE)||'{}')||{}}
@@ -1952,6 +2035,7 @@ function openMission(missionId){
   if(!meta)return;
 
   activeMission=missionId;
+  if(activeProfile)trackMissionStarted(missionId);
   // Navigation must work even before/without a stored learner profile.
   if(activeProfile){
     activeProfile.lastMission=missionId;
@@ -2033,6 +2117,7 @@ function registerStudent(){
   activeProfile.name=name;
   activeProfile.group=group;
   saveActiveProfile();
+  trackRegistration();
   $('#registrationOverlay').classList.add('hidden');
   syncMissionVisibility(activeMission);
   renderMissionDock();
@@ -2056,6 +2141,7 @@ function initStudentAccess(){
   const profiles=safeProfiles();
   if(activeKey && profiles[activeKey]){
     activeProfile=profiles[activeKey];
+    trackRegistration();
     syncMissionVisibility(activeMission);
     renderMissionDock();
     const draft=$('#exitWriting');
@@ -2198,6 +2284,7 @@ function resetMission3(doScroll=true){
   if(activeProfile){
     activeProfile.mapQuizScore=0;
     activeProfile.mapQuizAnswered=0;
+    activeProfile.m3AttemptRecorded=false;
     saveActiveProfile();
   }
   renderQuiz();
@@ -2394,6 +2481,7 @@ function extChoose(ai,card){
 function extFinish(){
   $('#extGame').classList.add('hidden');
   const pct=Math.round((extCorrect/extensionQuizData.length)*100);
+  trackAttempt('m4',pct,pct>=70,{correct:extCorrect,total:extensionQuizData.length,target:70});
   if(activeProfile){
     activeProfile.quizBest=Math.max(Number(activeProfile.quizBest||0),pct);
     saveActiveProfile();
@@ -2582,6 +2670,8 @@ async function getAIWritingFeedback(showUpgrade=false){
     aiReviewed=true;
     if(activeProfile){activeProfile.aiReviewed=true;saveActiveProfile()}
     updateM5Progress();
+    const m5track=writingMilestones();
+    trackAttempt('m5',m5track.pct,m5track.pct===100,{words:m5track.words,evidence:m5track.evidence,aiReview:true});
     aiStatus.textContent='Feedback generated for a B1+ / B2 learner. Keep the ideas that match what you wanted to say.';
     beep(720,.07);
   }catch(err){
@@ -2669,5 +2759,7 @@ safeBind('#resetBtn','click',()=>{
   safeRun('show home',()=>show('screenHome'));
 });
 </script>
+
+<a href="/teacher.html" style="position:fixed;right:12px;bottom:10px;z-index:20;font:600 11px system-ui;color:#756657;text-decoration:none;opacity:.55" title="Teacher tracking dashboard">Teacher dashboard</a>
 </body>
 </html>
