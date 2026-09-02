@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Trail of Tears v0.6.33 Progress Tracking Fix -->
 <title>Native American Voices &amp; Territories | Interactive Learning Journey</title>
 <style>
 :root{--ink:#2b241b;--paper:#f4ecdc;--paper2:#fbf7ed;--line:#cab995;--accent:#8b3f2b;--gold:#d6a745;--muted:#756a5a;--shadow:0 16px 40px rgba(48,36,21,.16)}
@@ -92,7 +93,7 @@ main{padding:24px} .screen{animation:fade .45s ease} .hidden{display:none!import
 
 /* ===== Student profile + teacher-controlled mission access ===== */
 .app{max-width:1560px}
-.workspace{display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,2fr);gap:20px;padding:24px;align-items:start}
+.workspace{display:grid;grid-template-columns:315px minmax(0,1fr);gap:20px;padding:24px;align-items:start}
 .workspace main{padding:0;min-width:0;grid-column:2;grid-row:1}
 .mission-dock{grid-column:1;grid-row:1}
 .mission-dock{position:sticky;top:76px;border:1px solid var(--line);border-radius:18px;background:var(--paper2);padding:15px;box-shadow:0 8px 24px rgba(60,44,24,.09);max-height:calc(100vh - 94px);overflow:auto}
@@ -163,7 +164,7 @@ main{padding:24px} .screen{animation:fade .45s ease} .hidden{display:none!import
 .chapter-body .mission-desc{font-size:10px}
 .chapter-body .open-mission{padding:7px 9px;font-size:11px}
 
-@media(max-width:820px){
+@media(max-width:1080px){
   .workspace{grid-template-columns:1fr;padding:16px}
   .workspace main{padding:0;grid-column:1;grid-row:2}
   .mission-dock{position:static;grid-column:1;grid-row:1;max-height:none}
@@ -339,31 +340,6 @@ input.grammar-answer{min-height:auto}
 
 .gap-solution{display:inline-block;margin:0 4px;padding:3px 7px;border-radius:7px;background:#fff0cf;border:1px solid #c99b46;color:#6f4b18;font:700 12px/1.35 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;vertical-align:baseline}
 
-
-/* ===== Mission 7 · Written Skills ===== */
-.written-intro{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;align-items:start}
-.written-target-card{border:1px solid var(--line);border-radius:16px;background:#fffaf0;padding:15px}
-.written-target-card strong{display:block;font-family:Georgia,serif;font-size:27px;color:var(--accent);margin:4px 0}
-.written-target-card span{display:block;font-size:12px;line-height:1.45;color:var(--muted)}
-.written-mini-note{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;line-height:1.45}
-.written-layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(250px,.8fr);gap:18px;margin-top:18px;align-items:start}
-.written-main,.written-toolbox{border:1px solid var(--line);border-radius:16px;background:#fffdf8;padding:16px}
-.written-label{display:block;font-weight:850;margin-bottom:8px}
-.written-textarea{width:100%;min-height:265px;resize:vertical;border:1px solid #bba98b;border-radius:12px;background:#fff;padding:14px;font:500 15px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
-.written-textarea:focus{outline:3px solid rgba(139,63,43,.13);border-color:var(--accent)}
-.written-underbar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:7px;font-size:11px;color:var(--muted)}
-.written-toolbox h3{font-family:Georgia,serif;margin:14px 0 8px;font-size:17px}
-.written-chips{display:flex;flex-wrap:wrap;gap:6px}
-.written-chips span{padding:5px 8px;border-radius:999px;background:#f3ead6;border:1px solid #d8c7aa;font-size:11px;font-weight:700}
-.written-structures{margin:8px 0 0;padding-left:20px;font-size:12px;line-height:1.7}
-.written-tip{margin-top:14px;border-radius:12px;background:#fff4d7;border:1px solid #e0c78e;padding:11px;font-size:12px;line-height:1.45}
-.written-feedback{margin-top:14px;border:1px solid var(--line);border-radius:14px;background:#fffaf0;padding:14px}
-.written-feedback h4{margin:0 0 8px;font-family:Georgia,serif}
-.written-feedback-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
-.written-feedback-item{border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px;font-size:12px;line-height:1.4}
-.written-feedback-item strong{display:block;margin-bottom:3px}
-@media(max-width:820px){.written-intro,.written-layout{grid-template-columns:1fr}.written-feedback-grid{grid-template-columns:1fr}}
-
 </style>
 </head>
 <body>
@@ -381,7 +357,7 @@ input.grammar-answer{min-height:auto}
     <p class="lead">Explore the course chapter by chapter. <strong>Chapter 01 — Trail of Tears</strong> contains seven interactive sub-missions. New chapters can be added later without changing the structure of the course.</p>
     <div class="home-steps">
       <div class="home-step"><strong>1 · Register</strong><span>Use your first name, initials or classroom alias and your class/group.</span></div>
-      <div class="home-step"><strong>2 · Open a chapter</strong><span>Expand Chapter 01 in the Explore panel on the left, then choose one of its seven sub-missions. The selected mission opens on the right.</span></div>
+      <div class="home-step"><strong>2 · Open a chapter</strong><span>Expand Chapter 01 in Explore, then choose one of its seven sub-missions.</span></div>
       <div class="home-step"><strong>3 · Work personally</strong><span>Your writing draft and quiz progress are saved on this browser for your profile.</span></div>
     </div>
     <div class="mission"><strong>Chapter 01 available:</strong> Trail of Tears is open for testing. Chapters 02 and 03 are shown as placeholders so you can preview the future course architecture.</div>
@@ -748,65 +724,124 @@ input.grammar-answer{min-height:auto}
 
 
   <div class="gap-mission" id="gapMission" data-mission-section="m7">
-    <div class="written-intro">
+    <div class="gap-intro">
       <div>
-        <div class="kicker">Mission 7 · Written Skills</div>
-        <h2 style="margin:5px 0 8px">Final task — Recap the Trail of Tears</h2>
-        <p class="lead" style="margin-bottom:8px">Using everything you have learnt in this chapter, write a short recap of the Trail of Tears.</p>
+        <div class="kicker">Mission 7 · Reconstruct the story</div>
+        <h2 style="margin:5px 0 8px">The Trail of Tears — Gap Challenge</h2>
+        <p class="lead" style="margin-bottom:8px">Reconstruct the text by typing a logical word or structure directly into each missing space. There is <strong>no word bank</strong>: use the historical context, grammar and vocabulary from the chapter.</p>
         <div class="mission">
-          <strong>Your task:</strong> explain <strong>what the Trail of Tears was</strong>, <strong>why Native American peoples were forced to leave their lands</strong>, <strong>what happened during the removal</strong>, and <strong>what the consequences were</strong> for Native American peoples.
+          <strong>Flexible answers:</strong> more than one logical formulation can be accepted. The <strong>Check my answers</strong> button becomes available once you have completed at least <strong>80%</strong> of the gaps. If the same answer is still incorrect after <strong>3 checks</strong>, the expected solution is revealed next to that gap.
+        </div>
+        <div class="gap-legend">
+          <span><span class="gap-dot" style="background:#6f9458"></span>accepted answer</span>
+          <span><span class="gap-dot" style="background:#b5584c"></span>answer to reconsider</span>
+          <span><span class="gap-dot" style="background:#c4953e"></span>edited since last check</span>
         </div>
       </div>
-      <div class="written-target-card">
-        <div class="kicker">Writing target</div>
-        <strong>400–500 words</strong>
-        <span>B1+/B2 · clear, organised and historically accurate</span>
-        <div class="written-mini-note"><strong>Grammar requirement:</strong> use at least <strong>4 passive-voice structures</strong> of your own.</div>
+
+      <div class="gap-scoreboard">
+        <div class="gap-score-head">
+          <div class="gap-cup" id="gapCup">🏆</div>
+          <div>
+            <div class="gap-score-big" id="gapScore">0%</div>
+            <div class="gap-level" id="gapLevel">Ready</div>
+            <div class="gap-completion" id="gapCompletion">0 / 18 gaps completed</div>
+          </div>
+        </div>
+        <div class="gap-stars" id="gapStars">☆☆☆☆☆</div>
+        <div class="gap-progress-shell" title="Completion before checking">
+          <div class="gap-progress-fill" id="gapCompletionFill"></div>
+        </div>
+        <div class="gap-scale" aria-label="Mission 7 mastery scale">
+          <div class="gap-scale-track"><div class="gap-scale-fill" id="gapScaleFill"></div></div>
+          <div class="gap-marker" id="gapMarker"></div>
+          <div class="gap-ticks">
+            <div class="gap-tick" style="left:20%"><strong>20%</strong>Poor</div>
+            <div class="gap-tick" style="left:45%"><strong>45%</strong>Not enough</div>
+            <div class="gap-tick" style="left:65%"><strong>65%</strong>Not solid</div>
+            <div class="gap-tick" style="left:80%"><strong>80%</strong>Good</div>
+            <div class="gap-tick" style="left:100%"><strong>100%</strong>Perfect</div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="mission-toolbar">
       <div class="mission-achievement">
-        <div class="mission-cup" id="m7MiniCup">✍️</div>
+        <div class="mission-cup" id="m7MiniCup">🏆</div>
         <div>
           <div><span class="mission-stars" id="m7MissionStars">☆☆☆☆☆</span> <span class="mission-percent" id="m7Pct">0%</span></div>
-          <div class="mission-achievement-copy"><strong id="m7Status">Final Writing Mission</strong><span id="m7Hint">Build your recap step by step.</span></div>
+          <div class="mission-achievement-copy"><strong id="m7Status">Reconstruction Quest</strong><span id="m7Hint">Complete at least 80% of the gaps to unlock checking.</span></div>
           <div class="mission-mini-bar"><div class="mission-mini-fill" id="m7MiniFill"></div></div>
         </div>
       </div>
       <button class="btn mission-redo" id="resetMission7Btn" type="button">↻ Redo Mission 7</button>
     </div>
 
-    <div class="written-layout">
-      <div class="written-main">
-        <label class="written-label" for="m7Writing">Your recap</label>
-        <textarea id="m7Writing" class="written-textarea" rows="12" placeholder="Write your 400–500 word recap here..."></textarea>
-        <div class="written-underbar">
-          <span id="m7WordCount">0 words</span>
-          <span id="m7PassiveCount">Passive voice: 0/4</span>
-          <span id="m7SaveStatus">Draft saved automatically</span>
-        </div>
-        <div class="gap-actions">
-          <button class="btn primary" id="checkM7WritingBtn" type="button">Check my writing</button>
-          <button class="btn" id="clearM7FeedbackBtn" type="button">Clear feedback</button>
-        </div>
-        <div id="m7WritingFeedback" class="written-feedback hidden" aria-live="polite"></div>
-      </div>
+    <div class="gap-text" id="gapText" aria-label="Trail of Tears gap-filling text">
+      <p>
+        The Trail of Tears refers to the
+        <input class="gap-input medium" data-gap="g1" aria-label="Gap 1">
+        of several Native American nations from their
+        <input class="gap-input short" data-gap="g2" aria-label="Gap 2">
+        lands in the southeastern United States during the 1830s and 1840s. After the
+        <input class="gap-input medium" data-gap="g3" aria-label="Gap 3">
+        was signed in 1830, thousands of
+        <input class="gap-input short" data-gap="g4" aria-label="Gap 4">,
+        Choctaw, Chickasaw, Muscogee and Seminole people
+        <input class="gap-input medium" data-gap="g5" aria-label="Gap 5">
+        move west to Indian Territory, mainly in present-day Oklahoma. This
+        <input class="gap-input short" data-gap="g6" aria-label="Gap 6">
+        of population was one of the saddest episodes in the history of the Native Americans.
+      </p>
 
-      <aside class="written-toolbox">
-        <div class="kicker">Writing Toolbox</div>
-        <h3>Useful vocabulary</h3>
-        <div class="written-chips">
-          <span>forced removal</span><span>homeland</span><span>territory</span><span>displacement</span><span>dispossession</span><span>treaty</span><span>journey</span><span>hardships</span><span>suffering</span><span>ancestors</span><span>memory</span>
-        </div>
-        <h3>Grammar requirement</h3>
-        <div class="written-tip">
-          Use <strong>at least 4 different passive-voice structures</strong> in your recap.
-          Choose the verbs and tenses yourself. The passive structures must be relevant to the historical events you describe.
-          <strong>No passive structure is provided here:</strong> show that you can transfer what you learnt in Mission 6 independently.
-        </div>
-        <div class="written-tip"><strong>Remember:</strong> do not simply list facts. Link your ideas into a coherent historical recap.</div>
-      </aside>
+      <p>
+        At a historical level, it was estimated that between 60,000 and 100,000 people were relocated
+        <input class="gap-input medium" data-gap="g7" aria-label="Gap 7">.
+        They were forced to leave everything behind and take only their basic
+        <input class="gap-input short" data-gap="g8" aria-label="Gap 8">.
+        Entire families were forced to migrate, travelling up to about 800 miles (1,300 km) for several months before reaching Indian Territory. The different
+        <input class="gap-input short" data-gap="g9" aria-label="Gap 9">
+        routes combined stretched over more than 5,000 miles (8,100 km). The conditions were extremely difficult, forcing them to travel in winter, sometimes barefoot, with only a blanket to warm themselves. The procession was escorted by
+        <input class="gap-input short" data-gap="g10" aria-label="Gap 10">
+        who wanted to make sure that the
+        <input class="gap-input short" data-gap="g11" aria-label="Gap 11">
+        people would go where they were asked to.
+      </p>
+
+      <p>
+        Those who used to move freely from one place to another without knowing anything about the notion of
+        <input class="gap-input short" data-gap="g12" aria-label="Gap 12">
+        or frontiers were now experiencing them the hard way. A lot of them died of extreme exhaustion, cold and
+        <input class="gap-input short" data-gap="g13" aria-label="Gap 13">.
+        It was estimated that between 13,200 and 16,700 people died during the relocation and 245 million acres of
+        <input class="gap-input short" data-gap="g14" aria-label="Gap 14">
+        were confiscated, while the
+        <input class="gap-input medium" data-gap="g15" aria-label="Gap 15">
+        was never fully paid.
+      </p>
+
+      <p>
+        By and large, the Trail of Tears was not simply a
+        <input class="gap-input medium" data-gap="g16" aria-label="Gap 16">.
+        People were separated from a land connected to their
+        <input class="gap-input xlong" data-gap="g17" aria-label="Gap 17">.
+        This explains why
+        <input class="gap-input xlong" data-gap="g18" aria-label="Gap 18">
+        remains so important to many Native nations today.
+      </p>
+    </div>
+
+    <div class="gap-actions">
+      <button class="btn primary" id="checkGapBtn" type="button" disabled>Check my answers</button>
+      <button class="btn" id="focusWrongGapBtn" type="button" disabled>Find a red answer</button>
+      <div class="gap-check-note" id="gapCheckNote" aria-live="polite">Complete at least 15 of the 18 gaps to unlock checking.</div>
+    </div>
+
+    <div id="gapFinal" class="gap-final hidden">
+      <div style="font-size:34px">🏆 ★★★★★</div>
+      <strong>Perfect reconstruction!</strong>
+      <div style="margin-top:5px">You have restored the whole text with logical and accurate vocabulary. Mission 7 complete.</div>
     </div>
   </div>
 
@@ -1014,7 +1049,6 @@ function updateM1Progress(){
     seen.size===5?'Explorer Cup unlocked!':'Explorer badge',
     seen.size===5?'You identified all five Southeastern homelands.':`Discover ${5-seen.size} more ${5-seen.size===1?'nation':'nations'}.`,
     seen.size===5);
-  if(seen.size===5)trackCompletionOnce('m1',100,{homelandsExplored:5});
   renderMissionDock();
 }
 function updateM2Progress(){
@@ -1026,7 +1060,6 @@ function updateM2Progress(){
     pct>=100?'Trail Tracker Cup unlocked!':'Trail tracker',
     directionCorrect?`${routeSeen.size}/${DATA.routes.length} routes explored · direction solved`:`${routeSeen.size}/${DATA.routes.length} routes explored · solve the direction challenge`,
     pct>=100);
-  if(pct>=100)trackCompletionOnce('m2',100,{routesExplored:routeSeen.size,directionSolved:directionCorrect});
   renderMissionDock();
 }
 function updateM3Progress(){
@@ -1042,10 +1075,6 @@ function updateM3Progress(){
   if(activeProfile && currentAnswered>0){
     activeProfile.mapQuizScore=currentScore;
     activeProfile.mapQuizAnswered=currentAnswered;
-    if(currentAnswered===quiz.length && !activeProfile.m3AttemptRecorded){
-      activeProfile.m3AttemptRecorded=true;
-      trackAttempt('m3',pct,score===quiz.length,{correct:score,total:quiz.length});
-    }
     saveActiveProfile();
   }
   renderMissionDock();
@@ -1087,9 +1116,10 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function beep(freq=520,dur=.07){if(!soundOn)return;try{const C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;o.type='sine';o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.06,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+dur);o.start();o.stop(c.currentTime+dur)}catch(e){}}
 
 function show(id){
-  document.querySelectorAll('main > .screen').forEach(el=>el.classList.add('hidden'));
-  const target=document.getElementById(id);
-  if(target)target.classList.remove('hidden');
+  ['screenHome','screen1','screenTransition','screen2','screen3'].forEach(x=>{
+    const el=document.getElementById(x);
+    if(el) el.classList.toggle('hidden',x!==id);
+  });
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1100,7 +1130,7 @@ const MISSION_META=[
   {id:'m4',no:'4',name:'Knowledge challenge',desc:'13-question quiz · 70% target',target:'screen3'},
   {id:'m5',no:'5',name:'Exit writing',desc:'B1+/B2 argument + AI coach',target:'screen3'},
   {id:'m6',no:'6',name:'Grammar Lab',desc:'Passive voice · 16 challenges',target:'screen3'},
-  {id:'m7',no:'7',name:'Written Skills',desc:'Final recap · 400–500 words',target:'screen3'}
+  {id:'m7',no:'7',name:'Gap Challenge',desc:'Reconstruct the Trail of Tears text',target:'screen3'}
 ];
 
 const GRAMMAR_QUESTIONS=[
@@ -1572,16 +1602,11 @@ function applyGrammarPartResults(part,countAttempt=true){
   updateGrammarFinalResult();
   updateM6Progress();
   saveGrammarProgress();
+  if(grammarPartChecked.A && grammarPartChecked.B){const gp=grammarOverallFirstTry();trackMissionAttempt('m6',gp,gp===100,`Grammar Parts A+B checked`);}
   beep(wrong===0?860:correct>=Math.ceil(qs.length/2)?610:260,.09);
 }
 function checkGrammarPart(part){
   applyGrammarPartResults(part,true);
-  const overall=grammarOverallFirstTry();
-  const allCorrect=GRAMMAR_QUESTIONS.every(q=>{
-    const card=document.querySelector(`[data-grammar-id="${q.id}"]`);
-    return card?.classList.contains('correct');
-  });
-  trackAttempt('m6',overall,allCorrect,{part,partFirstTry:grammarFirstTry[part],overallFirstTry:overall,allCorrect});
 }
 function focusWrongGrammarPart(part){
   const wrong=[...document.querySelectorAll(`[data-grammar-part="${part}"] .grammar-card.incorrect`)];
@@ -1641,122 +1666,284 @@ function resetMission6(){
 }
 
 
-let m7WritingChecked=false;
+const GAP_ITEMS=[
+  {id:'g1',accepted:['forced removal','forced relocation','forced displacement','removal'],label:'forced removal'},
+  {id:'g2',accepted:['ancestral','traditional','native'],label:'ancestral'},
+  {id:'g3',accepted:['indian removal act','the indian removal act','indian removal act of 1830','the indian removal act of 1830','removal act'],label:'Indian Removal Act'},
+  {id:'g4',accepted:['cherokee'],label:'Cherokee'},
+  {id:'g5',accepted:['were forced to','were compelled to','had to','were made to'],label:'were forced to'},
+  {id:'g6',accepted:['displacement','relocation','removal','forced relocation','forced displacement'],label:'displacement'},
+  {id:'g7',accepted:['against their will','without their consent','involuntarily','by force','forcibly'],label:'against their will'},
+  {id:'g8',accepted:['belongings','possessions','personal belongings','personal possessions'],label:'belongings'},
+  {id:'g9',accepted:['removal','migration','relocation','forced removal','displacement'],label:'removal'},
+  {id:'g10',accepted:['soldiers','troops','the military','military','us soldiers','u.s. soldiers','american soldiers'],label:'soldiers'},
+  {id:'g11',accepted:['indigenous','native','native american','native americans'],label:'Indigenous'},
+  {id:'g12',accepted:['borders','boundaries'],label:'borders'},
+  {id:'g13',accepted:['hunger','starvation'],label:'hunger'},
+  {id:'g14',accepted:['land','lands','territory'],label:'land'},
+  {id:'g15',accepted:['promised compensation','compensation','promised payment','promised payments','payment'],label:'promised compensation'},
+  {id:'g16',accepted:['geographical relocation','geographic relocation','physical relocation','simple relocation','territorial relocation'],label:'geographical relocation'},
+  {id:'g17',accepted:[],label:'ancestors, traditions, memories and identity',semantic:'heritage'},
+  {id:'g18',accepted:[],label:'protecting or reclaiming ancestral lands',semantic:'reclaim'}
+];
+const GAP_REQUIRED_TO_CHECK=Math.ceil(GAP_ITEMS.length*.80);
+let gapAttempts={};
+let gapChecked=false;
+let gapScore=0;
 
-function m7Words(){
-  const el=$('#m7Writing');
-  const txt=el?el.value.trim():'';
-  return txt?txt.split(/\s+/).filter(Boolean).length:0;
+function gapNorm(value){
+  return String(value||'')
+    .toLowerCase()
+    .replace(/[’‘]/g,"'")
+    .replace(/\bu\.?\s*s\.?\b/g,'us')
+    .replace(/[.,!?;:"]/g,'')
+    .replace(/\s+/g,' ')
+    .trim();
 }
-function m7PassiveCount(txt){
-  const patterns=[
-    /\b(?:was|were|is|are|am|be|been|being)\s+(?:\w+\s+){0,2}(?:ed|en)\b/gi,
-    /\b(?:was|were|is|are|am|be|been|being)\s+(?:taken|given|sent|made|built|found|held|kept|left|lost|told|known|seen|done|written|driven|chosen|broken|brought|bought|caught|fought|led|read|said|sold|taught|thought|won)\b/gi,
-    /\b(?:has|have|had)\s+been\s+(?:\w+\s+){0,2}(?:ed|en)\b/gi,
-    /\b(?:has|have|had)\s+been\s+(?:taken|given|sent|made|built|found|held|kept|left|lost|told|known|seen|done|written|driven|chosen|broken|brought|bought|caught|fought|led|read|said|sold|taught|thought|won)\b/gi,
-    /\b(?:can|could|may|might|must|should|would|will)\s+be\s+(?:\w+\s+){0,2}(?:ed|en)\b/gi,
-    /\b(?:can|could|may|might|must|should|would|will)\s+be\s+(?:taken|given|sent|made|built|found|held|kept|left|lost|told|known|seen|done|written|driven|chosen|broken|brought|bought|caught|fought|led|read|said|sold|taught|thought|won)\b/gi
-  ];
-  const found=[];
-  patterns.forEach(rx=>{
-    const matches=txt.match(rx)||[];
-    matches.forEach(m=>{
-      const norm=m.toLowerCase().replace(/\s+/g,' ').trim();
-      if(!found.includes(norm))found.push(norm);
-    });
+function gapStemIncludes(text,stems){
+  const v=gapNorm(text);
+  return stems.some(stem=>v.includes(stem));
+}
+function gapIsCorrect(item,value){
+  const v=gapNorm(value);
+  if(!v)return false;
+  if(item.accepted.some(a=>gapNorm(a)===v))return true;
+
+  if(item.semantic==='heritage'){
+    const concepts=[
+      ['ancestor'],['tradition'],['memor'],['identit'],['cultur'],['heritage'],['histor']
+    ];
+    const hits=concepts.filter(group=>group.some(stem=>v.includes(stem))).length;
+    return hits>=3;
+  }
+  if(item.semantic==='reclaim'){
+    const action=gapStemIncludes(v,['protect','reclaim','preserv','defend','recover','safeguard']);
+    const land=gapStemIncludes(v,['ancestral land','native land','homeland','territor','land']);
+    return action && land;
+  }
+  return false;
+}
+function gapFilledCount(){
+  return GAP_ITEMS.filter(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    return el && el.value.trim();
+  }).length;
+}
+function gapAnswers(){
+  const answers={};
+  GAP_ITEMS.forEach(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    answers[item.id]=el?el.value:'';
   });
-  return found.length;
+  return answers;
 }
-function m7HasPassive(txt){
-  return m7PassiveCount(txt)>=4;
+function gapSolutionNode(item){
+  const input=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+  if(!input)return null;
+  let node=input.nextElementSibling;
+  if(node && node.classList.contains('gap-solution'))return node;
+  node=document.createElement('span');
+  node.className='gap-solution hidden';
+  node.dataset.gapSolution=item.id;
+  input.insertAdjacentElement('afterend',node);
+  return node;
 }
-function m7Coverage(txt){
-  return {
-    definition:/\b(trail of tears|forced removal|removal|relocation|displacement)\b/i.test(txt),
-    cause:/\b(indian removal act|1830|land|territor|settler|government|treaty)\w*/i.test(txt),
-    journey:/\b(journey|winter|mile|hardship|cold|hunger|disease|exhaust|death|died|suffer)\w*/i.test(txt),
-    consequence:/\b(consequence|loss|dispossess|memory|identity|ancestor|culture|homeland|heritage|symbol)\w*/i.test(txt)
-  };
-}
-function m7Stars(words,txt,checked=false){
-  const cov=m7Coverage(txt);
-  let stars=0;
-  if(words>=150)stars++;
-  if(words>=300)stars++;
-  if(words>=400 && words<=500)stars++;
-  if(Object.values(cov).filter(Boolean).length>=3)stars++;
-  if(checked && m7HasPassive(txt))stars++;
-  return Math.min(5,stars);
-}
-function updateM7WritingProgress(){
-  const el=$('#m7Writing'); if(!el)return;
-  const txt=el.value.trim();
-  const words=m7Words();
-  $('#m7WordCount').textContent=words+(words===1?' word':' words');
-  const passiveCount=m7PassiveCount(txt);
-  if($('#m7PassiveCount'))$('#m7PassiveCount').textContent=`Passive voice: ${Math.min(passiveCount,4)}/4`;
-  const stars=m7Stars(words,txt,m7WritingChecked);
-  const pct=stars*20;
-  setMissionMeter('m7',pct,stars,5,
-    pct===100?'Written Skills complete!':'Final Writing Mission',
-    words<400?`${words}/400 words · keep developing your recap`:words>500?`${words} words · try to be more concise`:`${words} words · target reached`,
-    pct===100);
-  if($('#m7MissionStars'))$('#m7MissionStars').textContent=starString(stars,5);
-  if($('#m7MiniCup'))$('#m7MiniCup').classList.toggle('won',pct===100);
-  if(activeProfile){
-    activeProfile.m7Writing=el.value;
-    activeProfile.m7WritingChecked=m7WritingChecked;
-    saveActiveProfile();
-    renderMissionDock();
+function updateGapSolution(item){
+  const node=gapSolutionNode(item);
+  if(!node)return;
+  const input=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+  const attempts=Number(gapAttempts[item.id]||0);
+  const stillWrong=!!input && input.value.trim() && !gapIsCorrect(item,input.value);
+  if(attempts>=3 && stillWrong){
+    node.textContent='Solution: '+item.label;
+    node.classList.remove('hidden');
+  }else{
+    node.textContent='';
+    node.classList.add('hidden');
   }
 }
-function restoreGapMission(){
-  const el=$('#m7Writing'); if(!el)return;
-  el.value=activeProfile?.m7Writing||'';
-  m7WritingChecked=!!activeProfile?.m7WritingChecked;
-  updateM7WritingProgress();
+function updateAllGapSolutions(){
+  GAP_ITEMS.forEach(updateGapSolution);
 }
-function checkM7Writing(){
-  const el=$('#m7Writing'); if(!el)return;
-  const txt=el.value.trim();
-  const words=m7Words();
-  const cov=m7Coverage(txt);
-  const passiveCount=m7PassiveCount(txt);
-  const passive=passiveCount>=4;
-  m7WritingChecked=true;
-  const m7score=m7Stars(words,txt,true)*20;
-  trackAttempt('m7',m7score,m7score===100,{words,passiveCount,coverageCount});
-  const feedback=$('#m7WritingFeedback');
-  feedback.classList.remove('hidden');
-  const lengthMsg=words<400?'Your recap is still short. Develop the key ideas with precise historical details and clear explanations.':words>500?'Your recap is longer than the target. Remove repetitions and keep the most relevant facts.':'Your length is appropriate for the task.';
-  const coverageCount=Object.values(cov).filter(Boolean).length;
-  const contentMsg=coverageCount===4?'You cover the four expected dimensions of the task.':`You currently cover ${coverageCount}/4 key dimensions. Check the task instructions and add what is missing.`;
-  const passiveMsg=passive
-    ?`Passive voice requirement achieved: ${passiveCount}/4 or more structures detected.`
-    :`Passive voice: ${passiveCount}/4 structures detected. Add ${4-passiveCount} more passive structure${4-passiveCount===1?'':'s'} of your own.`;
-  const org=/\b(first|then|during|after|because|therefore|as a consequence|finally|however)\b/i.test(txt)?'Your recap contains linking language that helps organise the ideas.':'Add a few linking words such as “during”, “because”, “as a consequence” or “however”.';
-  feedback.innerHTML=`<h4>Writing feedback</h4><div class="written-feedback-grid">
-    <div class="written-feedback-item"><strong>Content</strong>${contentMsg}</div>
-    <div class="written-feedback-item"><strong>Organisation</strong>${org}</div>
-    <div class="written-feedback-item"><strong>Grammar</strong>${passiveMsg}</div>
-    <div class="written-feedback-item"><strong>Length</strong>${lengthMsg}</div>
-  </div><div class="written-tip" style="margin-top:10px"><strong>Next step:</strong> revise your own paragraph using this feedback. The tool does not rewrite the answer for you.</div>`;
-  updateM7WritingProgress();
-  beep(m7Stars(words,txt,true)>=4?760:520,.08);
+function gapLevelName(score,checked){
+  if(!checked)return 'Ready';
+  if(score===100)return 'Perfect';
+  if(score>=80)return 'Good';
+  if(score>=65)return 'Not solid';
+  if(score>=45)return 'Not enough';
+  if(score>=20)return 'Poor';
+  return 'Below 20%';
+}
+function gapStarsFor(score){
+  if(score>=100)return 5;
+  if(score>=80)return 4;
+  if(score>=65)return 3;
+  if(score>=45)return 2;
+  if(score>=20)return 1;
+  return 0;
+}
+function saveGapProgress(){
+  if(!activeProfile)return;
+  activeProfile.gapAnswers=gapAnswers();
+  activeProfile.gapAttempts={...gapAttempts};
+  activeProfile.gapChecked=gapChecked;
+  activeProfile.gapScore=gapScore;
+  saveActiveProfile();
+  renderMissionDock();
+}
+function updateGapProgress(){
+  const filled=gapFilledCount();
+  const completion=Math.round(filled/GAP_ITEMS.length*100);
+  const ready=filled>=GAP_REQUIRED_TO_CHECK;
+
+  $('#gapCompletion').textContent=`${filled} / ${GAP_ITEMS.length} gaps completed`;
+  $('#gapCompletionFill').style.width=completion+'%';
+  $('#checkGapBtn').disabled=!ready;
+
+  if(!gapChecked){
+    $('#gapCheckNote').textContent=ready
+      ? `You have completed ${completion}% of the text. Checking is now available.`
+      : `Complete at least ${GAP_REQUIRED_TO_CHECK} of the ${GAP_ITEMS.length} gaps to unlock checking (${completion}% completed).`;
+  }
+
+  const displayPct=gapChecked?gapScore:completion;
+  const stars=gapChecked?gapStarsFor(gapScore):Math.min(5,Math.floor(completion/20));
+
+  $('#gapScore').textContent=(gapChecked?gapScore:0)+'%';
+  $('#gapLevel').textContent=gapLevelName(gapScore,gapChecked);
+  $('#gapScaleFill').style.width=(gapChecked?gapScore:0)+'%';
+  $('#gapMarker').style.left=(gapChecked?gapScore:0)+'%';
+  $('#gapStars').textContent=starString(gapChecked?gapStarsFor(gapScore):0,5);
+  $('#gapCup').classList.toggle('won',gapChecked&&gapScore===100);
+
+  setMissionMeter('m7',displayPct,stars,5,
+    gapChecked&&gapScore===100?'Reconstruction Cup unlocked!':'Reconstruction Quest',
+    gapChecked
+      ? `${gapScore}% mastery · ${gapLevelName(gapScore,true)}`
+      : `${filled}/${GAP_ITEMS.length} gaps completed · check unlocks at 80%`,
+    gapChecked&&gapScore===100);
+
+  if($('#m7MissionStars'))$('#m7MissionStars').textContent=starString(stars,5);
+  if($('#m7MiniCup'))$('#m7MiniCup').classList.toggle('won',gapChecked&&gapScore===100);
+  $('#gapFinal').classList.toggle('hidden',!(gapChecked&&gapScore===100));
+}
+function restoreGapMission(){
+  const saved=activeProfile?.gapAnswers||{};
+  gapAttempts={...(activeProfile?.gapAttempts||{})};
+  gapChecked=!!activeProfile?.gapChecked;
+  gapScore=Number(activeProfile?.gapScore||0);
+
+  GAP_ITEMS.forEach(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    if(!el)return;
+    el.value=saved[item.id]||'';
+    el.classList.remove('correct','incorrect','edited');
+    if(gapChecked && el.value.trim()){
+      el.classList.add(gapIsCorrect(item,el.value)?'correct':'incorrect');
+    }
+    updateGapSolution(item);
+  });
+  $('#focusWrongGapBtn').disabled=!gapChecked || !document.querySelector('.gap-input.incorrect');
+  updateGapProgress();
+}
+function checkGapMission(){
+  const filled=gapFilledCount();
+  if(filled<GAP_REQUIRED_TO_CHECK){
+    $('#gapCheckNote').textContent=`You need at least ${GAP_REQUIRED_TO_CHECK} completed gaps before checking.`;
+    return;
+  }
+
+  gapChecked=true;
+  let correct=0;
+  GAP_ITEMS.forEach(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    if(!el)return;
+    el.classList.remove('correct','incorrect','edited');
+
+    if(!el.value.trim()){
+      return;
+    }
+
+    const ok=gapIsCorrect(item,el.value);
+    if(ok){
+      correct++;
+      el.classList.add('correct');
+    }else{
+      gapAttempts[item.id]=Number(gapAttempts[item.id]||0)+1;
+      el.classList.add('incorrect');
+    }
+    updateGapSolution(item);
+  });
+
+  gapScore=Math.round(correct/GAP_ITEMS.length*100);
+  const wrong=document.querySelectorAll('.gap-input.incorrect').length;
+  const blanks=GAP_ITEMS.length-filled;
+
+  const revealed=GAP_ITEMS.filter(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    return Number(gapAttempts[item.id]||0)>=3 && el && el.value.trim() && !gapIsCorrect(item,el.value);
+  }).length;
+
+  $('#gapCheckNote').textContent=
+    gapScore===100
+      ? 'Perfect — every gap has been reconstructed with an accepted logical answer.'
+      : `${correct}/${GAP_ITEMS.length} accepted. ${wrong} red ${wrong===1?'answer needs':'answers need'} reconsidering${blanks?` and ${blanks} gap${blanks===1?' is':'s are'} still empty`:''}${revealed?`. ${revealed} solution${revealed===1?' has':'s have'} now been revealed after 3 incorrect attempts.`:''}`;
+
+  $('#focusWrongGapBtn').disabled=wrong===0;
+  updateGapProgress();
+  saveGapProgress();
+  trackMissionAttempt('m7',gapScore,gapScore===100,`${correct}/${GAP_ITEMS.length} accepted`);
+  beep(gapScore===100?880:gapScore>=80?700:gapScore>=45?520:260,.09);
+}
+function focusWrongGap(){
+  const wrong=document.querySelector('.gap-input.incorrect');
+  if(!wrong)return;
+  wrong.scrollIntoView({behavior:'smooth',block:'center'});
+  wrong.focus();
 }
 function resetMission7(){
-  const el=$('#m7Writing'); if(el)el.value='';
-  m7WritingChecked=false;
-  const fb=$('#m7WritingFeedback'); if(fb){fb.innerHTML='';fb.classList.add('hidden');}
-  if(activeProfile){activeProfile.m7Writing='';activeProfile.m7WritingChecked=false;saveActiveProfile();}
-  updateM7WritingProgress();
+  gapAttempts={};
+  gapChecked=false;
+  gapScore=0;
+  GAP_ITEMS.forEach(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    if(!el)return;
+    el.value='';
+    el.classList.remove('correct','incorrect','edited');
+    const solution=gapSolutionNode(item);
+    if(solution){
+      solution.textContent='';
+      solution.classList.add('hidden');
+    }
+  });
+  $('#focusWrongGapBtn').disabled=true;
+  $('#gapFinal').classList.add('hidden');
+  if(activeProfile){
+    activeProfile.gapAnswers={};
+    activeProfile.gapAttempts={};
+    activeProfile.gapChecked=false;
+    activeProfile.gapScore=0;
+    saveActiveProfile();
+  }
+  updateGapProgress();
 }
 function initGapMission(){
-  const el=$('#m7Writing'); if(!el)return;
-  el.addEventListener('input',()=>{m7WritingChecked=false;const fb=$('#m7WritingFeedback');if(fb)fb.classList.add('hidden');updateM7WritingProgress();});
-  $('#checkM7WritingBtn')?.addEventListener('click',checkM7Writing);
-  $('#clearM7FeedbackBtn')?.addEventListener('click',()=>$('#m7WritingFeedback')?.classList.add('hidden'));
-  $('#resetMission7Btn')?.addEventListener('click',resetMission7);
+  GAP_ITEMS.forEach(item=>{
+    const el=document.querySelector(`.gap-input[data-gap="${item.id}"]`);
+    if(!el)return;
+    el.addEventListener('input',()=>{
+      if(gapChecked){
+        el.classList.remove('correct','incorrect');
+        el.classList.add('edited');
+      }
+      updateGapSolution(item);
+      updateGapProgress();
+      saveGapProgress();
+    });
+  });
+  $('#checkGapBtn').addEventListener('click',checkGapMission);
+  $('#focusWrongGapBtn').addEventListener('click',focusWrongGap);
+  $('#resetMission7Btn').addEventListener('click',resetMission7);
 }
 
 const PROFILE_STORE='trailOfTearsStudentProfilesV2';
@@ -1764,52 +1951,34 @@ const ACTIVE_PROFILE_STORE='trailOfTearsActiveProfileV2';
 let activeProfile=null;
 let activeMission=null;
 
-// --- v0.6.32 central classroom tracking ---
-const TRACKING_API='/api/track';
-function trackingPayloadBase(){
-  if(!activeProfile)return null;
-  return {
-    studentKey:activeProfile.key,
-    name:activeProfile.name,
-    group:activeProfile.group,
-    clientTime:new Date().toISOString(),
-    appVersion:'0.6.32'
-  };
-}
-function sendTrackingEvent(type,mission=null,data={}){
-  const base=trackingPayloadBase();
-  if(!base || location.protocol==='file:')return;
-  const body={...base,type,mission,...data};
-  fetch(TRACKING_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body),keepalive:true})
-    .catch(()=>{}); // Tracking failure must never block the learner interface.
-}
-function trackRegistration(){
+// v0.6.33 — central teacher-dashboard tracking
+async function sendTrackingEvent(mission,event,score=null,completed=false,details=''){
   if(!activeProfile)return;
-  sendTrackingEvent('registration',null,{});
+  const payload={
+    student:activeProfile.name, name:activeProfile.name, studentName:activeProfile.name,
+    class:activeProfile.group, className:activeProfile.group, group:activeProfile.group,
+    studentKey:activeProfile.key,
+    mission:mission||'', missionId:mission||'',
+    event, type:event,
+    score:score===null?null:Number(score),
+    completed:!!completed,
+    details:String(details||'')
+  };
+  try{
+    const r=await fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
+    if(!r.ok) console.warn('[tracking] rejected',r.status,await r.text().catch(()=>''));
+  }catch(err){ console.warn('[tracking] unavailable',err); }
 }
 function trackMissionStarted(missionId){
-  if(!activeProfile || !missionId)return;
+  if(!activeProfile)return;
   activeProfile.remoteStarted=activeProfile.remoteStarted||{};
   if(activeProfile.remoteStarted[missionId])return;
-  activeProfile.remoteStarted[missionId]=new Date().toISOString();
+  activeProfile.remoteStarted[missionId]=true;
   saveActiveProfile();
-  sendTrackingEvent('started',missionId,{});
+  sendTrackingEvent(missionId,'started',null,false,'Mission opened');
 }
-function trackAttempt(missionId,score,completed=false,details={}){
-  if(!activeProfile || !missionId)return;
-  sendTrackingEvent('attempt',missionId,{
-    score:Number.isFinite(Number(score))?Math.max(0,Math.min(100,Math.round(Number(score)))):null,
-    completed:!!completed,
-    details
-  });
-}
-function trackCompletionOnce(missionId,score=100,details={}){
-  if(!activeProfile)return;
-  activeProfile.remoteCompleted=activeProfile.remoteCompleted||{};
-  if(activeProfile.remoteCompleted[missionId])return;
-  activeProfile.remoteCompleted[missionId]=new Date().toISOString();
-  saveActiveProfile();
-  trackAttempt(missionId,score,true,details);
+function trackMissionAttempt(missionId,score,completed,details){
+  sendTrackingEvent(missionId,'attempt',Math.max(0,Math.min(100,Math.round(Number(score)||0))),!!completed,details||'');
 }
 
 function safeProfiles(){
@@ -1873,10 +2042,13 @@ function missionExtra(missionId){
     return `${checked}/2 checked · ${filled}/16 ready`;
   }
   if(missionId==='m7'){
-    const txt=String(activeProfile.m7Writing||'').trim();
-    const words=txt?txt.split(/\s+/).filter(Boolean).length:0;
-    const stars=m7Stars(words,txt,!!activeProfile.m7WritingChecked);
-    return `${starString(stars,5)} · ${words} words`;
+    const answers=activeProfile.gapAnswers||{};
+    const filled=Object.values(answers).filter(v=>String(v||'').trim()).length;
+    const checked=!!activeProfile.gapChecked;
+    const score=Number(activeProfile.gapScore||0);
+    const shown=checked?score:Math.round(filled/GAP_ITEMS.length*100);
+    const stars=checked?gapStarsFor(score):Math.min(5,Math.floor(shown/20));
+    return `${starString(stars,5)} · ${checked?score+'%':filled+'/18 ready'}`;
   }
   return '';
 }
@@ -1928,10 +2100,9 @@ function chapterMissionPercent(missionId){
     return Math.round(Object.values(answers).filter(v=>String(v||'').trim()).length/16*100);
   }
   if(missionId==='m7'){
-    const txt=String(activeProfile.m7Writing||'').trim();
-    const words=txt?txt.split(/\s+/).filter(Boolean).length:0;
-    const stars=m7Stars(words,txt,!!activeProfile.m7WritingChecked);
-    return stars*20;
+    const answers=activeProfile.gapAnswers||{};
+    if(activeProfile.gapChecked)return Math.min(100,Number(activeProfile.gapScore||0));
+    return Math.round(Object.values(answers).filter(v=>String(v||'').trim()).length/GAP_ITEMS.length*100);
   }
   return 0;
 }
@@ -1957,7 +2128,6 @@ function renderMissionDock(){
   setupChapterNavigation();
   updateChapterProgress();
   const list=$('#missionList');
-  if(!list){ console.warn('[Trail of Tears] #missionList is missing; navigation dock cannot render.'); return; }
   list.innerHTML='';
   MISSION_META.forEach(m=>{
     const row=document.createElement('div');
@@ -1995,12 +2165,7 @@ function renderMissionDock(){
     open.type='button';
     open.className='btn open-mission';
     open.textContent=activeMission===m.id?'Open now':'Open mission →';
-    open.addEventListener('click',(e)=>{e.preventDefault();e.stopPropagation();openMission(m.id);});
-    row.addEventListener('click',(e)=>{
-      if(e.target.closest('button'))return;
-      openMission(m.id);
-    });
-    row.style.cursor='pointer';
+    open.addEventListener('click',()=>openMission(m.id));
     row.appendChild(open);
 
     list.appendChild(row);
@@ -2010,20 +2175,17 @@ function renderMissionDock(){
 async function verifyMissionCode(missionId,code,errorNode,button){
   openMission(missionId);
 }
-function syncMissionVisibility(selectedMission=null){
-  const sections={
-    m3:$('#mission3Content'),
-    m4:$('#extensionQuiz'),
-    m5:$('#exitWritingMission'),
-    m6:$('#grammarMission'),
-    m7:$('#gapMission')
-  };
-  Object.entries(sections).forEach(([id,el])=>{
-    if(!el)return;
-    // On the shared screen, show only the selected sub-mission.
-    // When no shared-screen mission is selected, keep all sections hidden.
-    el.classList.toggle('hidden', selectedMission!==id);
-  });
+function syncMissionVisibility(){
+  const m3=$('#mission3Content');
+  const m4=$('#extensionQuiz');
+  const m5=$('#exitWritingMission');
+  const m6=$('#grammarMission');
+  const m7=$('#gapMission');
+  if(m3)m3.classList.remove('hidden');
+  if(m4)m4.classList.remove('hidden');
+  if(m5)m5.classList.remove('hidden');
+  if(m6)m6.classList.remove('hidden');
+  if(m7)m7.classList.remove('hidden');
 }
 function requestMission(missionId){
   openMission(missionId);
@@ -2033,39 +2195,26 @@ function openMission(missionId){
   if(card){card.classList.add('open'); if(toggle)toggle.setAttribute('aria-expanded','true');}
   const meta=MISSION_META.find(m=>m.id===missionId);
   if(!meta)return;
-
   activeMission=missionId;
-  if(activeProfile)trackMissionStarted(missionId);
-  // Navigation must work even before/without a stored learner profile.
-  if(activeProfile){
-    activeProfile.lastMission=missionId;
-    saveActiveProfile();
-  }
-
-  if(['m3','m4','m5','m6','m7'].includes(missionId)){
-    syncMissionVisibility(missionId);
-  }else{
-    syncMissionVisibility(null);
-  }
+  if(activeProfile){activeProfile.lastMission=missionId;saveActiveProfile();trackMissionStarted(missionId);}
+  syncMissionVisibility();
   renderMissionDock();
 
   if(missionId==='m2'){
     show('screenTransition');
-    setTimeout(()=>startRoutes(),350);
     return;
   }
-
   show(meta.target);
-  const targetByMission={
-    m3:'#mission3Content',
-    m4:'#extensionQuiz',
-    m5:'#exitWritingMission',
-    m6:'#grammarMission',
-    m7:'#gapMission'
-  };
-  const selector=targetByMission[missionId];
-  if(selector){
-    setTimeout(()=>document.querySelector(selector)?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  if(missionId==='m2'){
+    setTimeout(()=>startRoutes(),350);
+  }else if(missionId==='m4'){
+    setTimeout(()=>$('#extensionQuiz')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }else if(missionId==='m5'){
+    setTimeout(()=>$('#exitWritingMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }else if(missionId==='m6'){
+    setTimeout(()=>$('#grammarMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }else if(missionId==='m7'){
+    setTimeout(()=>$('#gapMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
   }
 }
 
@@ -2117,9 +2266,9 @@ function registerStudent(){
   activeProfile.name=name;
   activeProfile.group=group;
   saveActiveProfile();
-  trackRegistration();
+  sendTrackingEvent('', 'connected', null, false, 'Student connected');
   $('#registrationOverlay').classList.add('hidden');
-  syncMissionVisibility(activeMission);
+  syncMissionVisibility();
   renderMissionDock();
 
   const draft=$('#exitWriting');
@@ -2131,18 +2280,15 @@ function registerStudent(){
   show('screenHome');
 }
 function initStudentAccess(){
-  const registerBtn=$('#registerBtn');
-  if(registerBtn) registerBtn.addEventListener('click',registerStudent);
+  $('#registerBtn').addEventListener('click',registerStudent);
   ['studentName','studentClass'].forEach(id=>{
-    const field=$('#'+id);
-    if(field) field.addEventListener('keydown',e=>{if(e.key==='Enter')registerStudent()});
+    $('#'+id).addEventListener('keydown',e=>{if(e.key==='Enter')registerStudent()});
   });
   const activeKey=localStorage.getItem(ACTIVE_PROFILE_STORE);
   const profiles=safeProfiles();
   if(activeKey && profiles[activeKey]){
     activeProfile=profiles[activeKey];
-    trackRegistration();
-    syncMissionVisibility(activeMission);
+    syncMissionVisibility();
     renderMissionDock();
     const draft=$('#exitWriting');
     if(draft && activeProfile.writing){
@@ -2186,6 +2332,7 @@ function selectTribe(id){
     saveActiveProfile();
   }
   updateM1Progress();
+  if(seen.size===5 && activeProfile && !activeProfile.remoteM1Complete){activeProfile.remoteM1Complete=true;saveActiveProfile();trackMissionAttempt('m1',100,true,'5/5 nations explored');}
   if(seen.size===5){
     $('#unlockBtn').disabled=false;
     $('#unlockBtn').textContent='✓ All five discovered — Continue to Mission 2 →';
@@ -2243,6 +2390,7 @@ $$('#directionChoices .choice').forEach(b=>b.addEventListener('click',()=>{
   $('#directionFeedback').textContent=ok?'✓ Correct. The dominant movement is west, toward Indian Territory.':'Look at the endpoints again: where is Indian Territory relative to the Cherokee homeland?';
   if(activeProfile){activeProfile.directionCorrect=directionCorrect;saveActiveProfile()}
   updateM2Progress();
+  if(directionCorrect && routeSeen.size===DATA.routes.length && activeProfile && !activeProfile.remoteM2Complete){activeProfile.remoteM2Complete=true;saveActiveProfile();trackMissionAttempt('m2',100,true,'All routes explored + direction challenge correct');}
   beep(ok?720:220,.08);
 }));
 function resetMission2(){
@@ -2279,12 +2427,12 @@ function updateScore(){
   $('#scoreValue').textContent=score+' / 3';
   $('#scoreText').textContent=answered<3?'Answer the three map challenges.':score===3?'Excellent map detective work.':score===2?'Good. Recheck one piece of map evidence.':'Return to the two maps and compare location + direction again.';
   updateM3Progress();
+  if(answered===quiz.length){const pct=Math.round(score/quiz.length*100);trackMissionAttempt('m3',pct,pct===100,`${score}/${quiz.length} correct`);}
 }
 function resetMission3(doScroll=true){
   if(activeProfile){
     activeProfile.mapQuizScore=0;
     activeProfile.mapQuizAnswered=0;
-    activeProfile.m3AttemptRecorded=false;
     saveActiveProfile();
   }
   renderQuiz();
@@ -2481,13 +2629,13 @@ function extChoose(ai,card){
 function extFinish(){
   $('#extGame').classList.add('hidden');
   const pct=Math.round((extCorrect/extensionQuizData.length)*100);
-  trackAttempt('m4',pct,pct>=70,{correct:extCorrect,total:extensionQuizData.length,target:70});
   if(activeProfile){
     activeProfile.quizBest=Math.max(Number(activeProfile.quizBest||0),pct);
     saveActiveProfile();
     renderMissionDock();
   }
   const passed=pct>=70;
+  trackMissionAttempt('m4',pct,passed,`${extCorrect}/${extensionQuizData.length} correct`);
   const final=$('#extFinal');
   final.classList.remove('hidden');
   final.innerHTML=`<div class="ext-result ${passed?'pass':'fail'} ext-pop">
@@ -2670,8 +2818,7 @@ async function getAIWritingFeedback(showUpgrade=false){
     aiReviewed=true;
     if(activeProfile){activeProfile.aiReviewed=true;saveActiveProfile()}
     updateM5Progress();
-    const m5track=writingMilestones();
-    trackAttempt('m5',m5track.pct,m5track.pct===100,{words:m5track.words,evidence:m5track.evidence,aiReview:true});
+    trackMissionAttempt('m5',chapterMissionPercent('m5'),chapterMissionPercent('m5')>=100,'Writing checked with AI coach');
     aiStatus.textContent='Feedback generated for a B1+ / B2 learner. Keep the ideas that match what you wanted to say.';
     beep(720,.07);
   }catch(err){
@@ -2692,74 +2839,57 @@ async function getAIWritingFeedback(showUpgrade=false){
   }
 }
 
-// --- v0.6.30 robust bootstrap: one optional feature must never disable navigation ---
-function safeRun(label,fn){
-  try{ fn(); }
-  catch(err){ console.error('[Trail of Tears] '+label+' failed:',err); }
-}
-function safeBind(selector,event,handler){
-  const el=typeof selector==='string'?$(selector):selector;
-  if(!el){ console.warn('[Trail of Tears] Missing optional element:',selector); return; }
-  el.addEventListener(event,handler);
-}
-
-// Initialise learner access/navigation first so the mission dock remains usable
-// even if a later optional activity has a browser-specific problem.
-safeRun('student access / navigation',initStudentAccess);
-
-safeBind(aiCheckBtn,'click',()=>getAIWritingFeedback(false));
-safeBind(aiUpgradeBtn,'click',()=>{
+aiCheckBtn.addEventListener('click',()=>getAIWritingFeedback(false));
+aiUpgradeBtn.addEventListener('click',()=>{
   if(lastAIFeedback){
     renderAIFeedback(lastAIFeedback,true);
-    if(aiStatus) aiStatus.textContent='B2 upgrade revealed. Compare it with your own version before deciding whether to use it.';
+    aiStatus.textContent='B2 upgrade revealed. Compare it with your own version before deciding whether to use it.';
   }else{
     getAIWritingFeedback(true);
   }
 });
-safeBind('#exitResetBtn','click',resetExitWriting);
-safeBind('#resetMission5Btn','click',resetExitWriting);
-safeBind(exitWriting,'input',()=>{
+$('#exitResetBtn').addEventListener('click',resetExitWriting);
+$('#resetMission5Btn').addEventListener('click',resetExitWriting);
+exitWriting.addEventListener('input',()=>{
   updateExitWordCount();
   if(activeProfile){activeProfile.writing=exitWriting.value;saveActiveProfile();renderMissionDock()}
   if(lastAIFeedback) clearAIWritingFeedback();
 });
+renderPronunciationLab();
+$('#listenAllTribesBtn').addEventListener('click',listenToAllTribes);
+$('#stopPronunciationBtn').addEventListener('click',stopPronunciation);
+renderQuiz();
+updateM1Progress();
+updateM2Progress();
+updateM4MissionProgress();
+updateM5Progress();
+renderGrammarMission();
+updateM6Progress();
+initGapMission();
+restoreGapMission();
+$('#checkGrammarABtn').addEventListener('click',()=>checkGrammarPart('A'));
+$('#checkGrammarBBtn').addEventListener('click',()=>checkGrammarPart('B'));
+$('#focusWrongABtn').addEventListener('click',()=>focusWrongGrammarPart('A'));
+$('#focusWrongBBtn').addEventListener('click',()=>focusWrongGrammarPart('B'));
+$('#resetGrammarABtn').addEventListener('click',()=>resetGrammarPart('A'));
+$('#resetGrammarBBtn').addEventListener('click',()=>resetGrammarPart('B'));
+$('#resetMission6Btn').addEventListener('click',resetMission6);
+initStudentAccess();
 
-safeRun('pronunciation lab',renderPronunciationLab);
-safeBind('#listenAllTribesBtn','click',listenToAllTribes);
-safeBind('#stopPronunciationBtn','click',stopPronunciation);
-safeRun('quiz',renderQuiz);
-safeRun('mission 1 progress',updateM1Progress);
-safeRun('mission 2 progress',updateM2Progress);
-safeRun('mission 4 progress',updateM4MissionProgress);
-safeRun('mission 5 progress',updateM5Progress);
-safeRun('grammar mission',renderGrammarMission);
-safeRun('mission 6 progress',updateM6Progress);
-safeRun('mission 7 init',initGapMission);
-safeRun('mission 7 restore',restoreGapMission);
-safeBind('#checkGrammarABtn','click',()=>checkGrammarPart('A'));
-safeBind('#checkGrammarBBtn','click',()=>checkGrammarPart('B'));
-safeBind('#focusWrongABtn','click',()=>focusWrongGrammarPart('A'));
-safeBind('#focusWrongBBtn','click',()=>focusWrongGrammarPart('B'));
-safeBind('#resetGrammarABtn','click',()=>resetGrammarPart('A'));
-safeBind('#resetGrammarBBtn','click',()=>resetGrammarPart('B'));
-safeBind('#resetMission6Btn','click',resetMission6);
-
-safeBind('#soundBtn','click',()=>{soundOn=!soundOn;const b=$('#soundBtn');if(b)b.textContent=(soundOn?'🔊':'🔇')+' Sound';beep(600,.06)});
-safeBind('#fullBtn','click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
-safeBind('#resetBtn','click',()=>{
-  safeRun('reset mission 1',resetMission1);
-  safeRun('reset mission 2',resetMission2);
-  safeRun('reset mission 3',()=>resetMission3(false));
-  safeRun('reset mission 4',resetMission4);
-  safeRun('reset mission 5',resetExitWriting);
-  safeRun('reset mission 6',resetMission6);
-  safeRun('reset mission 7',resetMission7);
+$('#soundBtn').addEventListener('click',()=>{soundOn=!soundOn;$('#soundBtn').textContent=(soundOn?'🔊':'🔇')+' Sound';beep(600,.06)});
+$('#fullBtn').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()});
+$('#resetBtn').addEventListener('click',()=>{
+  resetMission1();
+  resetMission2();
+  resetMission3(false);
+  resetMission4();
+  resetExitWriting();
+  resetMission6();
+  resetMission7();
   activeMission=null;
-  safeRun('render mission dock',renderMissionDock);
-  safeRun('show home',()=>show('screenHome'));
+  renderMissionDock();
+  show('screenHome');
 });
 </script>
-
-<a href="/teacher.html" style="position:fixed;right:12px;bottom:10px;z-index:20;font:600 11px system-ui;color:#756657;text-decoration:none;opacity:.55" title="Teacher tracking dashboard">Teacher dashboard</a>
 </body>
 </html>
