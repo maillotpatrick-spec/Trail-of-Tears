@@ -31,7 +31,7 @@ export async function readAllEvents(){
 
 export function aggregateEvents(events){
   const students=new Map();
-  const missions=['m1','m2','m3','m4','m5','m6','m7'];
+  const missions=['m1','m2','m3','m4','m5','m6','m7','m8','m9','m10'];
   const emptyMission=()=>({startedAt:null,firstScore:null,bestScore:null,attempts:0,completed:false,lastActivity:null,lastDetails:null});
   for(const e of events){
     const key=String(e.studentKey);
