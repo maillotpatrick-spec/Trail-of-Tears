@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Trail of Tears v0.6.33 Progress Tracking Fix -->
+<!-- Trail of Tears v0.6.34 — Mission 8 English Tenses -->
 <title>Native American Voices &amp; Territories | Interactive Learning Journey</title>
 <style>
 :root{--ink:#2b241b;--paper:#f4ecdc;--paper2:#fbf7ed;--line:#cab995;--accent:#8b3f2b;--gold:#d6a745;--muted:#756a5a;--shadow:0 16px 40px rgba(48,36,21,.16)}
@@ -339,6 +339,42 @@ input.grammar-answer{min-height:auto}
 
 
 .gap-solution{display:inline-block;margin:0 4px;padding:3px 7px;border-radius:7px;background:#fff0cf;border:1px solid #c99b46;color:#6f4b18;font:700 12px/1.35 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;vertical-align:baseline}
+
+
+/* ===== Mission 8 · English Tenses Revision ===== */
+.m8-mission{margin-top:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper2);padding:20px}
+.m8-intro{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+.m8-scoreboard{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border:1px solid var(--line);border-radius:16px;background:#fffaf0;padding:10px}
+.m8-stat{border:1px solid var(--line);border-radius:11px;background:#fffdf8;padding:10px 8px;text-align:center}
+.m8-stat strong{display:block;font-family:Georgia,serif;color:var(--accent);font-size:21px;line-height:1.05}
+.m8-stat span{display:block;margin-top:4px;color:var(--muted);font-size:9px;line-height:1.2;text-transform:uppercase;letter-spacing:.06em}
+.m8-rule-strip{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.m8-rule{display:inline-block;padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:#efe4ce;color:#6b5e4f;font-size:10px;font-weight:850}
+.m8-transition{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;margin:20px 0 4px;padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:#fffaf0}
+.m8-transition-no{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:white;font-family:Georgia,serif;font-weight:800;font-size:19px}
+.m8-transition strong{font-family:Georgia,serif;font-size:18px}
+.m8-transition p{margin:4px 0 0;color:var(--muted);font-size:12px;line-height:1.45}
+.m8-fr{margin:9px 0 8px;padding:10px 11px;border:1px solid #ded0b8;border-radius:10px;background:#f7efe1;font-family:Georgia,serif;font-size:16px;line-height:1.5}
+.m8-clue{display:inline-block;margin-top:6px;padding:4px 7px;border-radius:999px;background:#efe4ce;color:#6b4b34;font-size:10px;font-weight:850}
+.m8-inline-check{display:flex;justify-content:flex-end;margin-top:8px}
+.m8-inline-check .btn{padding:7px 10px;font-size:11px}
+.m8-feedback{min-height:18px;margin-top:7px;font-size:12px;line-height:1.48}
+.m8-feedback ul{margin:5px 0 0;padding-left:18px}
+.m8-feedback li{margin:3px 0}
+.m8-model{margin-top:8px;padding:9px 10px;border:1px dashed #c5964a;border-radius:9px;background:#fff5e0;color:var(--ink);font-weight:500}
+.m8-model strong{color:#6c4a22}
+.grammar-card.m8-accepted{border-color:#c59743;background:#fff5dc}
+.grammar-card.m8-accepted .grammar-answer{border-color:#c59743;color:#73551f}
+.grammar-card.m8-accepted .m8-feedback{color:#73551f;font-weight:700}
+.m8-status-line{font-size:12px;color:var(--muted);font-weight:750}
+.m8-final{margin-top:16px;text-align:center;border:1px solid #8ca16f;border-radius:14px;background:#eff6e9;padding:16px;font-family:Georgia,serif;font-size:21px}
+.m8-final small{display:block;margin-top:5px;font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-size:12px;color:#536548}
+@media(max-width:780px){
+  .m8-intro{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .m8-scoreboard{grid-template-columns:1fr}
+}
 
 </style>
 </head>
@@ -845,6 +881,87 @@ input.grammar-answer{min-height:auto}
     </div>
   </div>
 
+
+  <div class="m8-mission" id="tensesMission" data-mission-section="m8">
+    <div class="m8-intro">
+      <div>
+        <div class="kicker">Mission 8 · Grammar focus</div>
+        <h2 style="margin:5px 0 8px">Let’s revise English Tenses</h2>
+        <p class="lead" style="margin-bottom:8px">Revise the <strong>present simple</strong>, <strong>simple past</strong>, <strong>present perfect</strong> and <strong>present perfect continuous</strong>, then transfer these choices into full English translations.</p>
+        <div class="mission">
+          <strong>Translation rule:</strong> the target tense is essential. Small spelling or wording mistakes are pointed out and corrected, but minor mistakes do not automatically stop your progression. A translation can therefore be <strong>Accepted — refine</strong>.
+        </div>
+        <div class="m8-rule-strip" aria-label="Mission 8 marking rules">
+          <span class="m8-rule">Tense = essential</span>
+          <span class="m8-rule">Spelling = checked</span>
+          <span class="m8-rule">Minor wording errors = feedback</span>
+          <span class="m8-rule">Different natural translations accepted</span>
+        </div>
+      </div>
+
+      <div class="m8-scoreboard" aria-live="polite">
+        <div class="m8-stat"><strong id="m8TenseScore">0 / 20</strong><span>Tense forms</span></div>
+        <div class="m8-stat"><strong id="m8TranslationScore">0 / 8</strong><span>Translations</span></div>
+        <div class="m8-stat"><strong id="m8OverallScore">0%</strong><span>Validated</span></div>
+      </div>
+    </div>
+
+    <div class="grammar-part" aria-labelledby="m8Part1Title">
+      <div class="grammar-part-head">
+        <div>
+          <h3 id="m8Part1Title">Exercise 1 — Complete the verbal group</h3>
+          <span>Use the tense that best matches the time clue and context.</span>
+        </div>
+        <span class="m8-status-line" id="m8TenseStatus">0 / 20 validated</span>
+      </div>
+
+      <div id="m8TenseGrid" class="grammar-grid"></div>
+
+      <div class="grammar-actions">
+        <button class="btn primary" id="m8CheckTensesBtn" type="button">Check Exercise 1</button>
+        <button class="btn" id="m8FocusTenseErrorsBtn" type="button">Find my errors</button>
+        <button class="btn" id="m8ResetTensesBtn" type="button">↻ Redo Exercise 1</button>
+        <div class="grammar-check-note" id="m8TenseNote">You can also check each sentence individually.</div>
+      </div>
+    </div>
+
+    <div class="m8-transition">
+      <div class="m8-transition-no">2</div>
+      <div>
+        <strong>Now use the tense inside a complete sentence.</strong>
+        <p>The translation checker is deliberately tolerant: it checks tense first, then obvious spelling and key meaning. Read every correction even when your answer is accepted.</p>
+      </div>
+    </div>
+
+    <div class="grammar-part" aria-labelledby="m8Part2Title">
+      <div class="grammar-part-head">
+        <div>
+          <h3 id="m8Part2Title">Exercise 2 — Translate into English</h3>
+          <span>Focus on the tense and spelling rather than reproducing one exact model sentence.</span>
+        </div>
+        <span class="m8-status-line" id="m8TranslationStatus">0 / 8 validated</span>
+      </div>
+
+      <div id="m8TranslationGrid" class="grammar-grid"></div>
+
+      <div class="grammar-actions">
+        <button class="btn primary" id="m8CheckTranslationsBtn" type="button">Check translations</button>
+        <button class="btn" id="m8FocusTranslationErrorsBtn" type="button">Find what to revise</button>
+        <button class="btn" id="m8ResetTranslationsBtn" type="button">↻ Redo Exercise 2</button>
+        <div class="grammar-check-note" id="m8TranslationNote">“Accepted — refine” gives progression, but you should still read the proposed correction.</div>
+      </div>
+    </div>
+
+    <div id="m8Final" class="m8-final hidden">
+      🏆 Mission 8 complete — English tenses revised!
+      <small>You have validated all 20 tense forms and all 8 translations.</small>
+    </div>
+
+    <div class="grammar-actions">
+      <button class="btn" id="resetMission8Btn" type="button">↻ Redo Mission 8</button>
+    </div>
+  </div>
+
   <div class="sources"><strong>Historical sources used:</strong> U.S. National Park Service, <em>The Trail of Tears and the Forced Relocation of the Cherokee Nation</em> and Trail of Tears National Historic Trail materials; Smithsonian National Museum of the American Indian, <em>American Indian Removal: What Does It Mean to Remove a People?</em> Portrait sources include the Smithsonian/National Portrait Gallery, Library of Congress and public-domain reproductions via Wikimedia Commons. “Trail of Tears” is most directly associated with the Cherokee removal of 1838–1839; the other four Southeastern nations also experienced distinct removal histories.</div>
 </section>
 
@@ -861,7 +978,7 @@ input.grammar-answer{min-height:auto}
       <span class="chapter-copy">
         <span class="chapter-label">Chapter 01</span>
         <strong>Trail of Tears</strong>
-        <small>7 interactive sub-missions</small>
+        <small>8 interactive sub-missions</small>
       </span>
       <span class="chapter-status">
         <strong id="chapter01Pct">0%</strong>
@@ -1130,7 +1247,8 @@ const MISSION_META=[
   {id:'m4',no:'4',name:'Knowledge challenge',desc:'13-question quiz · 70% target',target:'screen3'},
   {id:'m5',no:'5',name:'Exit writing',desc:'B1+/B2 argument + AI coach',target:'screen3'},
   {id:'m6',no:'6',name:'Grammar Lab',desc:'Passive voice · 16 challenges',target:'screen3'},
-  {id:'m7',no:'7',name:'Gap Challenge',desc:'Reconstruct the Trail of Tears text',target:'screen3'}
+  {id:'m7',no:'7',name:'Gap Challenge',desc:'Reconstruct the Trail of Tears text',target:'screen3'},
+  {id:'m8',no:'8',name:'Let’s revise English Tenses',desc:'20 tense forms + 8 translations',target:'screen3'}
 ];
 
 const GRAMMAR_QUESTIONS=[
@@ -1946,6 +2064,510 @@ function initGapMission(){
   $('#resetMission7Btn').addEventListener('click',resetMission7);
 }
 
+
+/* ===== Mission 8 · English Tenses Revision ===== */
+const M8_TENSE_ITEMS=[
+  {id:1,prompt:'Native American communities ___ for the return of sacred objects for many years.',verb:'fight',accepted:['have been fighting','have fought'],model:'have been fighting',clue:'for many years',tip:'A continuing activity over a duration strongly suggests the present perfect continuous.'},
+  {id:2,prompt:'The Wounded Knee Massacre ___ more than a century ago.',verb:'occur',accepted:['occurred'],model:'occurred',clue:'ago',tip:'A finished past time takes the simple past.'},
+  {id:3,prompt:'Many museums today ___ the importance of repatriating Indigenous cultural objects.',verb:'recognize',accepted:['recognize','recognise'],model:'recognize',clue:'today',tip:'A present-day general situation takes the present simple.'},
+  {id:4,prompt:'Lakota representatives ___ with museum officials since the beginning of the campaign.',verb:'work',accepted:['have been working','have worked'],model:'have been working',clue:'since',tip:'Since + an activity continuing to the present strongly suggests the present perfect continuous.'},
+  {id:5,prompt:'In the nineteenth century, collectors ___ many objects from Native American communities.',verb:'obtain',accepted:['obtained'],model:'obtained',clue:'in the nineteenth century',tip:'A completed historical action takes the simple past.'},
+  {id:6,prompt:'The question of repatriation ___ more important in recent decades.',verb:'become',accepted:['has become'],model:'has become',clue:'in recent decades',tip:'A change connected to the present takes the present perfect.'},
+  {id:7,prompt:'Manny Iron Hawk regularly ___ ceremonies at the Wounded Knee site.',verb:'attend',accepted:['attends'],model:'attends',clue:'regularly',tip:'A regular habit takes the present simple.'},
+  {id:8,prompt:'Several museums ___ Indigenous artifacts to their original communities in recent years.',verb:'give back',accepted:['have given back'],model:'have given back',clue:'in recent years',tip:'Recent past actions connected to the present take the present perfect.'},
+  {id:9,prompt:'Historians ___ the circumstances surrounding the massacre for decades.',verb:'study',accepted:['have been studying','have studied'],model:'have been studying',clue:'for decades',tip:'A continuing activity over a duration strongly suggests the present perfect continuous.'},
+  {id:10,prompt:'U.S. troops ___ the Lakota camp before the shooting began.',verb:'surround',accepted:['surrounded'],model:'surrounded',clue:'before ... began',tip:'This is part of a completed historical sequence, so use the simple past.'},
+  {id:11,prompt:'Many Lakota families ___ the memory of their ancestors from one generation to the next.',verb:'preserve',accepted:['preserve'],model:'preserve',clue:'general practice',tip:'A continuing general practice takes the present simple.'},
+  {id:12,prompt:'Indigenous activists ___ for greater recognition of Native American rights for several decades.',verb:'campaign',accepted:['have been campaigning','have campaigned'],model:'have been campaigning',clue:'for several decades',tip:'Duration + a continuing activity strongly suggests the present perfect continuous.'},
+  {id:13,prompt:'Some cultural objects ___ outside their original communities for more than one hundred years.',verb:'remain',accepted:['have remained'],model:'have remained',clue:'for more than one hundred years',tip:'A state continuing from the past until now takes the present perfect.'},
+  {id:14,prompt:'Museums today ___ increasing pressure to examine the origins of their collections.',verb:'face',accepted:['face'],model:'face',clue:'today',tip:'A current general situation takes the present simple.'},
+  {id:15,prompt:'After the massacre, soldiers and civilians ___ personal belongings from the dead.',verb:'take',accepted:['took'],model:'took',clue:'after the massacre',tip:'A completed historical action takes the simple past.'},
+  {id:16,prompt:'The debate over the ownership of Indigenous artifacts ___ considerably in recent years.',verb:'develop',accepted:['has developed'],model:'has developed',clue:'in recent years',tip:'A recent development with present relevance takes the present perfect.'},
+  {id:17,prompt:'Native American communities ___ museums to return ceremonial objects since the late twentieth century.',verb:'encourage',accepted:['have been encouraging','have encouraged'],model:'have been encouraging',clue:'since the late twentieth century',tip:'Since + a repeated or continuing action strongly suggests the present perfect continuous.'},
+  {id:18,prompt:'Some museums still ___ objects whose ownership is disputed.',verb:'possess',accepted:['possess'],model:'possess',clue:'still / present state',tip:'A present state takes the present simple.'},
+  {id:19,prompt:'The events at Wounded Knee ___ a deep influence on Native American memory and identity.',verb:'have',accepted:['have had'],model:'have had',clue:'past event + influence today',tip:'The influence continues today, so use the present perfect.'},
+  {id:20,prompt:'Researchers ___ more attention to the history of Indigenous dispossession in recent years.',verb:'pay',accepted:['have paid','have been paying'],model:'have paid',clue:'in recent years',tip:'The present perfect is expected; the continuous is also possible if you emphasize an ongoing trend.'}
+];
+
+const M8_TRANSLATION_ITEMS=[
+  {
+    id:1,
+    fr:'Depuis plusieurs années, les communautés lakotas demandent aux musées de restituer les objets qui ont été pris à leurs ancêtres.',
+    model:'For several years, Lakota communities have been asking museums to return the objects that were taken from their ancestors.',
+    focus:'present perfect continuous + past passive',
+    required:[
+      {label:'present perfect / continuous for the ongoing request',patterns:[/\bhave been asking\b/i,/\bhave asked\b/i]},
+      {label:'past passive for the objects taken from the ancestors',patterns:[/\bwere taken\b/i,/\bhad been taken\b/i]}
+    ],
+    concepts:[['lakota'],['communities','community'],['museums','museum'],['objects','items','artifacts'],['ancestors','ancestor']],
+    expected:['for','several','years','lakota','communities','have','been','asking','asked','museums','return','objects','items','artifacts','were','taken','ancestors']
+  },
+  {
+    id:2,
+    fr:"Bien que le massacre ait eu lieu en 1890, ses conséquences continuent d'affecter les descendants des victimes aujourd'hui.",
+    model:'Although the massacre took place in 1890, its consequences continue to affect the descendants of the victims today.',
+    focus:'simple past + present simple',
+    required:[
+      {label:'simple past for the massacre in 1890',patterns:[/\btook place\b/i,/\bhappened\b/i,/\boccurred\b/i]},
+      {label:'present simple for the consequences today',patterns:[/\bconsequences?\s+(?:still\s+)?(?:continue|continues)\b/i,/\bconsequences?\s+(?:still\s+)?affect(?:s)?\b/i]}
+    ],
+    concepts:[['massacre'],['1890'],['consequences','effects'],['descendants'],['victims','victim']],
+    expected:['although','massacre','took','place','happened','occurred','1890','consequences','effects','continue','affect','descendants','victims','today']
+  },
+  {
+    id:3,
+    fr:'Après avoir été désarmés, les Lakotas furent encerclés par les soldats américains avant que les premiers coups de feu ne soient tirés.',
+    model:'After being disarmed, the Lakotas were surrounded by U.S. soldiers before the first shots were fired.',
+    focus:'past passive forms',
+    required:[
+      {label:'a passive form for being disarmed',patterns:[/\bbeing disarmed\b/i,/\bhaving been disarmed\b/i,/\bwere disarmed\b/i]},
+      {label:'simple past passive for the Lakotas being surrounded',patterns:[/\bwere surrounded\b/i]},
+      {label:'simple past passive for the first shots',patterns:[/\bshots?\s+were fired\b/i,/\bwere fired\b/i]}
+    ],
+    concepts:[['lakota','lakotas'],['soldiers','troops'],['shots','gunshots','fire']],
+    expected:['after','being','having','been','disarmed','lakotas','were','surrounded','soldiers','troops','before','first','shots','gunshots','fired']
+  },
+  {
+    id:4,
+    fr:"De nombreux objets ont été conservés dans des collections privées ou dans des musées pendant plus d'un siècle.",
+    model:'Many objects have been kept in private collections or museums for more than a century.',
+    focus:'present perfect passive',
+    required:[
+      {label:'present perfect passive for the objects kept over time',patterns:[/\bhave been (?:kept|preserved|held|stored)\b/i]}
+    ],
+    concepts:[['objects','items','artifacts'],['private'],['collections','collection'],['museums','museum'],['century']],
+    expected:['many','objects','items','artifacts','have','been','kept','preserved','held','stored','private','collections','museums','more','than','century']
+  },
+  {
+    id:5,
+    fr:'Ces dernières années, plusieurs institutions ont commencé à examiner la manière dont leurs collections ont été constituées.',
+    model:'In recent years, several institutions have begun to examine how their collections were formed.',
+    focus:'present perfect + passive',
+    required:[
+      {label:'present perfect for the recent beginning',patterns:[/\bhave (?:begun|started)\b/i]},
+      {label:'a passive form for how the collections were formed',patterns:[/\bcollections?\s+(?:were|have been)\s+(?:formed|built|assembled|created|constituted)\b/i]}
+    ],
+    concepts:[['recent','recently'],['institutions','institution'],['examine','review','investigate'],['collections','collection']],
+    expected:['in','recent','years','several','institutions','have','begun','started','examine','review','investigate','how','collections','were','formed','built','assembled','created']
+  },
+  {
+    id:6,
+    fr:"Les représentants autochtones négocient avec les musées depuis longtemps, mais certains objets sacrés n'ont toujours pas été rendus.",
+    model:'Indigenous representatives have been negotiating with museums for a long time, but some sacred objects have still not been returned.',
+    focus:'present perfect continuous + negative passive',
+    required:[
+      {label:'present perfect / continuous for the negotiations',patterns:[/\bhave been negotiating\b/i,/\bhave negotiated\b/i]},
+      {label:'negative present perfect passive for the sacred objects',patterns:[/\bhave (?:still )?not been (?:returned|given back|repatriated)\b/i,/\bhaven['’]?t (?:still )?been (?:returned|given back|repatriated)\b/i]}
+    ],
+    concepts:[['indigenous','native'],['representatives','representative'],['museums','museum'],['sacred'],['objects','items','artifacts']],
+    expected:['indigenous','native','representatives','have','been','negotiating','negotiated','museums','for','long','time','but','sacred','objects','items','artifacts','still','not','returned','given','back','repatriated']
+  },
+  {
+    id:7,
+    fr:'Lorsque certains objets furent pris après le massacre, ils furent séparés des communautés auxquelles ils appartenaient.',
+    model:'When some objects were taken after the massacre, they were separated from the communities to which they belonged.',
+    focus:'simple past passive + simple past',
+    required:[
+      {label:'simple past passive for the objects being taken',patterns:[/\b(?:objects|items|artifacts)\s+were taken\b/i]},
+      {label:'simple past passive for being separated',patterns:[/\bwere separated\b/i]},
+      {label:'simple past for belonging to the communities',patterns:[/\bbelonged\b/i]}
+    ],
+    concepts:[['objects','items','artifacts'],['massacre'],['communities','community'],['belonged','belong']],
+    expected:['when','some','objects','items','artifacts','were','taken','after','massacre','separated','from','communities','belonged']
+  },
+  {
+    id:8,
+    fr:"La restitution de ces objets peut être considérée comme une manière de reconnaître les injustices du passé et de restaurer une partie de l'identité culturelle qui a été perdue.",
+    model:'The return of these objects can be considered a way of acknowledging past injustices and restoring part of the cultural identity that has been lost.',
+    focus:'modal passive + present perfect passive',
+    required:[
+      {label:'modal passive: can be considered / seen / viewed',patterns:[/\bcan be (?:considered|seen|viewed)\b/i]},
+      {label:'present perfect passive for the identity that has been lost',patterns:[/\bhas been lost\b/i]}
+    ],
+    concepts:[['return','repatriation','restitution'],['objects','items','artifacts'],['injustices','injustice','wrongs'],['cultural'],['identity']],
+    expected:['the','return','repatriation','restitution','objects','items','artifacts','can','be','considered','seen','viewed','way','acknowledging','recognizing','recognising','past','injustices','wrongs','restoring','cultural','identity','has','been','lost']
+  }
+];
+
+function m8DefaultState(){
+  return {
+    tenseAnswers:{},tenseValidated:{},tenseAttempts:{},tenseFirstTry:{},
+    translationAnswers:{},translationValidated:{},translationAttempts:{},translationFirstTry:{},translationStatus:{},
+    bestScore:0,completed:false
+  };
+}
+let m8State=m8DefaultState();
+
+function m8Norm(value){
+  return String(value||'').toLowerCase().replace(/[’‘]/g,"'").replace(/\bu\.?\s*s\.?\b/g,'us').replace(/[.,!?;:"]/g,'').replace(/\s+/g,' ').trim();
+}
+function m8EditDistance(a,b){
+  a=String(a);b=String(b);
+  const dp=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));
+  for(let i=0;i<=a.length;i++)dp[i][0]=i;
+  for(let j=0;j<=b.length;j++)dp[0][j]=j;
+  for(let i=1;i<=a.length;i++){
+    for(let j=1;j<=b.length;j++){
+      dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+    }
+  }
+  return dp[a.length][b.length];
+}
+function m8LoadState(){
+  m8State=m8DefaultState();
+  if(activeProfile?.m8){
+    const saved=activeProfile.m8;
+    Object.keys(m8State).forEach(k=>{if(saved[k]!==undefined)m8State[k]=saved[k];});
+  }
+}
+function m8TenseCount(){return M8_TENSE_ITEMS.filter(q=>!!m8State.tenseValidated[q.id]).length}
+function m8TranslationCount(){return M8_TRANSLATION_ITEMS.filter(q=>!!m8State.translationValidated[q.id]).length}
+function m8ValidatedCount(){return m8TenseCount()+m8TranslationCount()}
+function m8FirstTryPct(){
+  const values=[
+    ...Object.values(m8State.tenseFirstTry||{}),
+    ...Object.values(m8State.translationFirstTry||{})
+  ];
+  return values.length?Math.round(values.filter(Boolean).length/values.length*100):0;
+}
+function m8SaveState(){
+  const score=Math.round(m8ValidatedCount()/28*100);
+  m8State.bestScore=Math.max(Number(m8State.bestScore||0),score);
+  m8State.completed=m8ValidatedCount()===28;
+  if(activeProfile){
+    activeProfile.m8=JSON.parse(JSON.stringify(m8State));
+    activeProfile.m8Score=score;
+    activeProfile.m8Best=m8State.bestScore;
+    activeProfile.m8Completed=m8State.completed;
+    activeProfile.m8Tries=
+      Object.values(m8State.tenseAttempts||{}).reduce((a,b)=>a+Number(b||0),0)+
+      Object.values(m8State.translationAttempts||{}).reduce((a,b)=>a+Number(b||0),0);
+    saveActiveProfile();
+  }
+  m8UpdateSummary();
+  renderMissionDock();
+}
+function m8UpdateSummary(){
+  const tense=m8TenseCount(),trans=m8TranslationCount(),total=tense+trans,pct=Math.round(total/28*100);
+  if($('#m8TenseScore'))$('#m8TenseScore').textContent=`${tense} / 20`;
+  if($('#m8TranslationScore'))$('#m8TranslationScore').textContent=`${trans} / 8`;
+  if($('#m8OverallScore'))$('#m8OverallScore').textContent=pct+'%';
+  if($('#m8TenseStatus'))$('#m8TenseStatus').textContent=`${tense} / 20 validated`;
+  if($('#m8TranslationStatus'))$('#m8TranslationStatus').textContent=`${trans} / 8 validated`;
+  if($('#m8Final'))$('#m8Final').classList.toggle('hidden',total!==28);
+}
+function m8IsTenseCorrect(item,value){
+  const v=m8Norm(value);
+  return item.accepted.some(a=>m8Norm(a)===v);
+}
+function m8SetFirstTry(bucket,id,ok){if(bucket[id]===undefined)bucket[id]=!!ok}
+
+function m8RenderTenseCards(){
+  const grid=$('#m8TenseGrid');
+  if(!grid||grid.dataset.rendered)return;
+  grid.dataset.rendered='1';
+  M8_TENSE_ITEMS.forEach(item=>{
+    const card=document.createElement('div');
+    card.className='grammar-card';
+    card.dataset.m8Tense=item.id;
+    card.innerHTML=`
+      <div class="grammar-q-top">
+        <div class="grammar-q-no">${item.id}</div>
+        <div class="grammar-prompt">${item.prompt}
+          <div class="grammar-verb">${item.verb}</div>
+          <div class="m8-clue">Time clue · ${item.clue}</div>
+        </div>
+      </div>
+      <input class="grammar-answer" data-m8-tense-input="${item.id}" autocomplete="off" placeholder="Type the verbal group…">
+      <div class="m8-inline-check"><button class="btn" type="button" data-m8-tense-check="${item.id}">Check</button></div>
+      <div class="m8-feedback" data-m8-tense-feedback="${item.id}"></div>`;
+    grid.appendChild(card);
+    const input=card.querySelector('.grammar-answer');
+    input.addEventListener('input',()=>{
+      m8State.tenseAnswers[item.id]=input.value;
+      if(m8State.tenseValidated[item.id]&&!m8IsTenseCorrect(item,input.value)){
+        m8State.tenseValidated[item.id]=false;
+        card.classList.remove('correct');
+        card.classList.add('edited');
+      }
+      m8SaveState();
+    });
+    input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();m8CheckTense(item.id,true)}});
+    card.querySelector('[data-m8-tense-check]').addEventListener('click',()=>m8CheckTense(item.id,true));
+  });
+}
+function m8PaintTense(id,showFeedback=true){
+  const item=M8_TENSE_ITEMS.find(q=>q.id===id);
+  const card=document.querySelector(`[data-m8-tense="${id}"]`);
+  if(!item||!card)return;
+  const input=card.querySelector('.grammar-answer');
+  const feedback=card.querySelector('.m8-feedback');
+  input.value=m8State.tenseAnswers[id]||'';
+  card.classList.remove('correct','incorrect','edited','m8-accepted');
+  const attempts=Number(m8State.tenseAttempts[id]||0);
+  if(m8State.tenseValidated[id]){
+    card.classList.add('correct');
+    if(showFeedback)feedback.innerHTML=`✓ <strong>Correct.</strong> ${item.tip}`;
+  }else if(attempts>0&&String(input.value||'').trim()){
+    card.classList.add('incorrect');
+    if(showFeedback)feedback.innerHTML=`✎ <strong>Check the tense.</strong> Suggested correction: <strong>${item.model}</strong>.<br>${item.tip}`;
+  }else{
+    feedback.textContent='';
+  }
+}
+function m8CheckTense(id,countAttempt=true){
+  const item=M8_TENSE_ITEMS.find(q=>q.id===id);
+  const card=document.querySelector(`[data-m8-tense="${id}"]`);
+  if(!item||!card)return false;
+  const input=card.querySelector('.grammar-answer');
+  const value=String(input.value||'').trim();
+  if(!value){
+    card.classList.remove('correct','edited','m8-accepted');
+    card.classList.add('incorrect');
+    card.querySelector('.m8-feedback').innerHTML='✎ <strong>Complete the verbal group first.</strong>';
+    return false;
+  }
+  const ok=m8IsTenseCorrect(item,value);
+  m8State.tenseAnswers[id]=value;
+  if(countAttempt)m8State.tenseAttempts[id]=Number(m8State.tenseAttempts[id]||0)+1;
+  if(countAttempt)m8SetFirstTry(m8State.tenseFirstTry,id,ok);
+  m8State.tenseValidated[id]=ok;
+  m8PaintTense(id,true);
+  m8SaveState();
+  beep(ok?760:240,.05);
+  return ok;
+}
+
+function m8ConceptCoverage(text,item){
+  const n=m8Norm(text);
+  let hits=0;
+  item.concepts.forEach(group=>{if(group.some(word=>n.includes(m8Norm(word))))hits++});
+  return item.concepts.length?hits/item.concepts.length:1;
+}
+function m8TenseRequirements(text,item){
+  const missing=[];
+  item.required.forEach(rule=>{if(!rule.patterns.some(pattern=>pattern.test(text)))missing.push(rule.label)});
+  return {ok:missing.length===0,missing};
+}
+function m8FindSpelling(text,item){
+  const expected=[...new Set(item.expected.map(m8Norm).filter(Boolean))];
+  const tokens=m8Norm(text).split(/\s+/).filter(w=>/^[a-z]+$/.test(w)&&w.length>3);
+  const issues=[],seen=new Set();
+  tokens.forEach(token=>{
+    if(expected.includes(token))return;
+    let best=null,dist=99;
+    expected.forEach(candidate=>{
+      if(candidate.length<4||candidate[0]!==token[0]||Math.abs(candidate.length-token.length)>2)return;
+      const d=m8EditDistance(token,candidate);
+      if(d<dist){dist=d;best=candidate}
+    });
+    const tolerance=token.length<=5?1:2;
+    if(best&&dist>0&&dist<=tolerance){
+      const key=token+'>'+best;
+      if(!seen.has(key)){seen.add(key);issues.push({from:token,to:best})}
+    }
+  });
+  return issues.slice(0,8);
+}
+function m8AssessTranslation(text,item){
+  const trimmed=String(text||'').trim();
+  if(trimmed.split(/\s+/).filter(Boolean).length<5){
+    return {validated:false,status:'revise',missing:['the complete sentence'],spelling:[],coverage:0,tooShort:true};
+  }
+  const tense=m8TenseRequirements(trimmed,item);
+  const spelling=m8FindSpelling(trimmed,item);
+  const coverage=m8ConceptCoverage(trimmed,item);
+  const minorSpelling=spelling.length<=2;
+  const enoughMeaning=coverage>=0.4;
+  const validated=tense.ok&&minorSpelling&&enoughMeaning;
+  const status=validated?(spelling.length===0&&coverage>=0.8?'correct':'accepted'):'revise';
+  return {validated,status,missing:tense.missing,spelling,coverage,tooShort:false};
+}
+function m8RenderTranslationCards(){
+  const grid=$('#m8TranslationGrid');
+  if(!grid||grid.dataset.rendered)return;
+  grid.dataset.rendered='1';
+  M8_TRANSLATION_ITEMS.forEach(item=>{
+    const card=document.createElement('div');
+    card.className='grammar-card';
+    card.dataset.m8Translation=item.id;
+    card.innerHTML=`
+      <div class="grammar-q-top">
+        <div class="grammar-q-no">${item.id}</div>
+        <div class="grammar-prompt">
+          <div class="m8-fr">${item.fr}</div>
+          <div class="m8-clue">Tense focus · ${item.focus}</div>
+        </div>
+      </div>
+      <textarea class="grammar-answer" data-m8-translation-input="${item.id}" placeholder="Translate into English…"></textarea>
+      <div class="m8-inline-check"><button class="btn" type="button" data-m8-translation-check="${item.id}">Check translation</button></div>
+      <div class="m8-feedback" data-m8-translation-feedback="${item.id}"></div>`;
+    grid.appendChild(card);
+    const input=card.querySelector('.grammar-answer');
+    input.addEventListener('input',()=>{
+      m8State.translationAnswers[item.id]=input.value;
+      if(m8State.translationValidated[item.id]){
+        m8State.translationValidated[item.id]=false;
+        m8State.translationStatus[item.id]=null;
+        card.classList.remove('correct','m8-accepted');
+        card.classList.add('edited');
+      }
+      m8SaveState();
+    });
+    card.querySelector('[data-m8-translation-check]').addEventListener('click',()=>m8CheckTranslation(item.id,true));
+  });
+}
+function m8FeedbackTranslation(item,result){
+  if(result.tooShort)return '✎ <strong>Complete the whole sentence before checking.</strong>';
+  const parts=[];
+  if(result.status==='correct')parts.push('✓ <strong>Validated.</strong> The target tense and spelling are solid.');
+  else if(result.status==='accepted')parts.push('✓ <strong>Accepted — refine.</strong> You may progress, but read the correction below.');
+  else parts.push('✎ <strong>Revise and try again.</strong>');
+
+  if(result.missing.length){
+    parts.push(`<strong>Tense to correct:</strong><ul>${result.missing.map(x=>`<li>${x}</li>`).join('')}</ul>`);
+  }else{
+    parts.push('✓ <strong>Tense:</strong> the required structure was detected.');
+  }
+  if(result.spelling.length){
+    parts.push(`<strong>Spelling:</strong><ul>${result.spelling.map(x=>`<li><em>${x.from}</em> → <strong>${x.to}</strong></li>`).join('')}</ul>`);
+  }else{
+    parts.push('✓ <strong>Spelling:</strong> no clear spelling slip was detected.');
+  }
+  if(result.coverage<0.4)parts.push('✎ <strong>Meaning:</strong> too many key ideas from the French sentence are missing.');
+  else if(result.coverage<0.8)parts.push('💡 <strong>Wording:</strong> your tense is acceptable; compare your wording with the model for greater precision.');
+  parts.push(`<div class="m8-model"><strong>Suggested correction:</strong> ${item.model}</div>`);
+  return parts.join('<br>');
+}
+function m8PaintTranslation(id,showFeedback=true){
+  const item=M8_TRANSLATION_ITEMS.find(q=>q.id===id);
+  const card=document.querySelector(`[data-m8-translation="${id}"]`);
+  if(!item||!card)return;
+  const input=card.querySelector('.grammar-answer');
+  const feedback=card.querySelector('.m8-feedback');
+  input.value=m8State.translationAnswers[id]||'';
+  card.classList.remove('correct','incorrect','edited','m8-accepted');
+  const attempts=Number(m8State.translationAttempts[id]||0);
+  if(attempts>0&&String(input.value||'').trim()){
+    const result=m8AssessTranslation(input.value,item);
+    m8State.translationValidated[id]=result.validated;
+    m8State.translationStatus[id]=result.status;
+    if(result.status==='correct')card.classList.add('correct');
+    else if(result.status==='accepted')card.classList.add('m8-accepted');
+    else card.classList.add('incorrect');
+    if(showFeedback)feedback.innerHTML=m8FeedbackTranslation(item,result);
+  }else{
+    feedback.textContent='';
+  }
+}
+function m8CheckTranslation(id,countAttempt=true){
+  const item=M8_TRANSLATION_ITEMS.find(q=>q.id===id);
+  const card=document.querySelector(`[data-m8-translation="${id}"]`);
+  if(!item||!card)return false;
+  const input=card.querySelector('.grammar-answer');
+  const result=m8AssessTranslation(input.value,item);
+  m8State.translationAnswers[id]=input.value;
+  if(countAttempt)m8State.translationAttempts[id]=Number(m8State.translationAttempts[id]||0)+1;
+  if(countAttempt)m8SetFirstTry(m8State.translationFirstTry,id,result.validated);
+  m8State.translationValidated[id]=result.validated;
+  m8State.translationStatus[id]=result.status;
+  m8PaintTranslation(id,true);
+  m8SaveState();
+  beep(result.validated?760:240,.05);
+  return result.validated;
+}
+
+function m8CheckAllTenses(){
+  let filled=0;
+  M8_TENSE_ITEMS.forEach(item=>{
+    const input=document.querySelector(`[data-m8-tense-input="${item.id}"]`);
+    if(String(input?.value||'').trim())filled++;
+    m8CheckTense(item.id,true);
+  });
+  const score=Math.round(m8ValidatedCount()/28*100);
+  const correct=m8TenseCount();
+  $('#m8TenseNote').textContent=filled<20
+    ? `${filled}/20 answers completed. Fill the remaining boxes, then check again.`
+    : `${correct}/20 tense forms currently validated.`;
+  trackMissionAttempt('m8',score,m8State.completed,`Exercise 1: ${correct}/20 validated · first try ${m8FirstTryPct()}%`);
+}
+function m8CheckAllTranslations(){
+  let filled=0;
+  M8_TRANSLATION_ITEMS.forEach(item=>{
+    const input=document.querySelector(`[data-m8-translation-input="${item.id}"]`);
+    if(String(input?.value||'').trim())filled++;
+    m8CheckTranslation(item.id,true);
+  });
+  const score=Math.round(m8ValidatedCount()/28*100);
+  const correct=m8TranslationCount();
+  $('#m8TranslationNote').textContent=filled<8
+    ? `${filled}/8 translations completed. Finish the remaining sentences, then check again.`
+    : `${correct}/8 translations currently validated.`;
+  trackMissionAttempt('m8',score,m8State.completed,`Exercise 2: ${correct}/8 validated · overall ${m8ValidatedCount()}/28 · first try ${m8FirstTryPct()}%`);
+}
+function m8FocusFirst(selector){
+  const el=document.querySelector(selector);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'});el.querySelector('.grammar-answer')?.focus()}
+}
+function m8ResetTenses(){
+  m8State.tenseAnswers={};m8State.tenseValidated={};m8State.tenseAttempts={};m8State.tenseFirstTry={};
+  M8_TENSE_ITEMS.forEach(item=>{
+    const card=document.querySelector(`[data-m8-tense="${item.id}"]`);
+    if(!card)return;
+    card.querySelector('.grammar-answer').value='';
+    card.querySelector('.m8-feedback').textContent='';
+    card.classList.remove('correct','incorrect','edited','m8-accepted');
+  });
+  m8SaveState();
+  $('#m8TenseNote').textContent='You can also check each sentence individually.';
+}
+function m8ResetTranslations(){
+  m8State.translationAnswers={};m8State.translationValidated={};m8State.translationAttempts={};m8State.translationFirstTry={};m8State.translationStatus={};
+  M8_TRANSLATION_ITEMS.forEach(item=>{
+    const card=document.querySelector(`[data-m8-translation="${item.id}"]`);
+    if(!card)return;
+    card.querySelector('.grammar-answer').value='';
+    card.querySelector('.m8-feedback').textContent='';
+    card.classList.remove('correct','incorrect','edited','m8-accepted');
+  });
+  m8SaveState();
+  $('#m8TranslationNote').textContent='“Accepted — refine” gives progression, but you should still read the proposed correction.';
+}
+function resetMission8(){
+  m8State=m8DefaultState();
+  if(activeProfile){
+    activeProfile.m8=JSON.parse(JSON.stringify(m8State));
+    activeProfile.m8Score=0;activeProfile.m8Best=0;activeProfile.m8Completed=false;activeProfile.m8Tries=0;
+    saveActiveProfile();
+  }
+  m8ResetTenses();
+  m8ResetTranslations();
+  m8UpdateSummary();
+}
+function renderM8Mission(){
+  m8RenderTenseCards();
+  m8RenderTranslationCards();
+}
+function restoreM8Mission(){
+  renderM8Mission();
+  m8LoadState();
+  M8_TENSE_ITEMS.forEach(item=>m8PaintTense(item.id,true));
+  M8_TRANSLATION_ITEMS.forEach(item=>m8PaintTranslation(item.id,true));
+  m8UpdateSummary();
+}
+function initM8Mission(){
+  renderM8Mission();
+  $('#m8CheckTensesBtn')?.addEventListener('click',m8CheckAllTenses);
+  $('#m8FocusTenseErrorsBtn')?.addEventListener('click',()=>m8FocusFirst('[data-m8-tense].incorrect, [data-m8-tense].edited'));
+  $('#m8ResetTensesBtn')?.addEventListener('click',m8ResetTenses);
+  $('#m8CheckTranslationsBtn')?.addEventListener('click',m8CheckAllTranslations);
+  $('#m8FocusTranslationErrorsBtn')?.addEventListener('click',()=>m8FocusFirst('[data-m8-translation].incorrect, [data-m8-translation].edited'));
+  $('#m8ResetTranslationsBtn')?.addEventListener('click',m8ResetTranslations);
+  $('#resetMission8Btn')?.addEventListener('click',resetMission8);
+  restoreM8Mission();
+}
+
+
 const PROFILE_STORE='trailOfTearsStudentProfilesV2';
 const ACTIVE_PROFILE_STORE='trailOfTearsActiveProfileV2';
 let activeProfile=null;
@@ -2050,6 +2672,14 @@ function missionExtra(missionId){
     const stars=checked?gapStarsFor(score):Math.min(5,Math.floor(shown/20));
     return `${starString(stars,5)} · ${checked?score+'%':filled+'/18 ready'}`;
   }
+  if(missionId==='m8'){
+    const score=Math.min(100,Number(activeProfile.m8Score||0));
+    const tense=Object.values(activeProfile.m8?.tenseValidated||{}).filter(Boolean).length;
+    const trans=Object.values(activeProfile.m8?.translationValidated||{}).filter(Boolean).length;
+    const validated=tense+trans;
+    const stars=Math.min(5,Math.floor((score+19.999)/20));
+    return `${starString(stars,5)} · ${validated}/28 validated`;
+  }
   return '';
 }
 function renderStudentChip(){
@@ -2103,6 +2733,12 @@ function chapterMissionPercent(missionId){
     const answers=activeProfile.gapAnswers||{};
     if(activeProfile.gapChecked)return Math.min(100,Number(activeProfile.gapScore||0));
     return Math.round(Object.values(answers).filter(v=>String(v||'').trim()).length/GAP_ITEMS.length*100);
+  }
+  if(missionId==='m8'){
+    if(activeProfile.m8Score!==undefined&&activeProfile.m8Score!==null)return Math.min(100,Number(activeProfile.m8Score||0));
+    const tense=Object.values(activeProfile.m8?.tenseAnswers||{}).filter(v=>String(v||'').trim()).length;
+    const trans=Object.values(activeProfile.m8?.translationAnswers||{}).filter(v=>String(v||'').trim()).length;
+    return Math.round((tense+trans)/28*100);
   }
   return 0;
 }
@@ -2181,11 +2817,13 @@ function syncMissionVisibility(){
   const m5=$('#exitWritingMission');
   const m6=$('#grammarMission');
   const m7=$('#gapMission');
+  const m8=$('#tensesMission');
   if(m3)m3.classList.remove('hidden');
   if(m4)m4.classList.remove('hidden');
   if(m5)m5.classList.remove('hidden');
   if(m6)m6.classList.remove('hidden');
   if(m7)m7.classList.remove('hidden');
+  if(m8)m8.classList.remove('hidden');
 }
 function requestMission(missionId){
   openMission(missionId);
@@ -2215,6 +2853,9 @@ function openMission(missionId){
     setTimeout(()=>$('#grammarMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
   }else if(missionId==='m7'){
     setTimeout(()=>$('#gapMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }else if(missionId==='m8'){
+    restoreM8Mission();
+    setTimeout(()=>$('#tensesMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
   }
 }
 
@@ -2239,6 +2880,7 @@ function restorePersonalProgress(){
   renderGrammarMission();
   updateM6Progress();
   restoreGapMission();
+  restoreM8Mission();
 }
 
 function showRegistration(isChange=false){
@@ -2867,6 +3509,7 @@ renderGrammarMission();
 updateM6Progress();
 initGapMission();
 restoreGapMission();
+initM8Mission();
 $('#checkGrammarABtn').addEventListener('click',()=>checkGrammarPart('A'));
 $('#checkGrammarBBtn').addEventListener('click',()=>checkGrammarPart('B'));
 $('#focusWrongABtn').addEventListener('click',()=>focusWrongGrammarPart('A'));
@@ -2886,6 +3529,7 @@ $('#resetBtn').addEventListener('click',()=>{
   resetExitWriting();
   resetMission6();
   resetMission7();
+  resetMission8();
   activeMission=null;
   renderMissionDock();
   show('screenHome');
