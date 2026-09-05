@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Trail of Tears v0.6.34 — Mission 8 English Tenses -->
+<!-- Trail of Tears v0.6.35 — Submission 9 SchoolAI + Grammar Transfer -->
 <title>Native American Voices &amp; Territories | Interactive Learning Journey</title>
 <style>
 :root{--ink:#2b241b;--paper:#f4ecdc;--paper2:#fbf7ed;--line:#cab995;--accent:#8b3f2b;--gold:#d6a745;--muted:#756a5a;--shadow:0 16px 40px rgba(48,36,21,.16)}
@@ -375,6 +375,53 @@ input.grammar-answer{min-height:auto}
 @media(max-width:520px){
   .m8-scoreboard{grid-template-columns:1fr}
 }
+
+
+
+/* ===== Submission 9 · Wounded Knee video + SchoolAI + Grammar Transfer ===== */
+.m9-mission{margin-top:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper2);padding:20px}
+.m9-intro{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:16px;align-items:start}
+.m9-scoreboard{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;border:1px solid var(--line);border-radius:16px;background:#fffaf0;padding:10px}
+.m9-stat{border:1px solid var(--line);border-radius:11px;background:#fffdf8;padding:10px 8px;text-align:center}
+.m9-stat strong{display:block;font-family:Georgia,serif;color:var(--accent);font-size:21px;line-height:1.05}
+.m9-stat span{display:block;margin-top:4px;color:var(--muted);font-size:9px;line-height:1.2;text-transform:uppercase;letter-spacing:.06em}
+.m9-step{margin-top:18px;border:1px solid var(--line);border-radius:16px;background:#fffaf0;padding:17px}
+.m9-step-head{display:grid;grid-template-columns:42px minmax(0,1fr);gap:12px;align-items:start;margin-bottom:12px}
+.m9-step-no{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;background:var(--accent);color:white;font-family:Georgia,serif;font-weight:800;font-size:19px}
+.m9-step h3{margin:0 0 3px;font-family:Georgia,serif;font-size:21px}
+.m9-step-head p{margin:0;color:var(--muted);font-size:12px;line-height:1.45}
+.m9-video{position:relative;padding-top:56.25%;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#191713;box-shadow:0 8px 22px rgba(0,0,0,.12)}
+.m9-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.m9-video-fallback{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:9px;color:var(--muted);font-size:11px;line-height:1.4}
+.m9-schoolai{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:15px;border:1px solid var(--line);border-radius:14px;background:#fffdf8}
+.m9-code{display:inline-flex;align-items:center;margin-top:7px;padding:9px 13px;border:1px dashed var(--accent);border-radius:10px;background:#fff;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:18px;font-weight:900;letter-spacing:.05em;color:var(--accent)}
+.m9-school-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.m9-textarea{width:100%;min-height:170px;resize:vertical;border:1px solid var(--line);border-radius:12px;background:#fffdf8;padding:12px;color:var(--ink);font:inherit;line-height:1.55}
+.m9-textarea:focus{outline:3px solid rgba(139,63,43,.12);border-color:var(--accent)}
+.m9-meta{display:flex;justify-content:space-between;gap:10px;margin-top:7px;color:var(--muted);font-size:10px}
+.m9-rule-note{padding:11px 13px;border:1px solid var(--line);border-radius:12px;background:#fff8e8;color:#574b3e;font-size:12px;line-height:1.5;margin-bottom:12px}
+.m9-tense-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.m9-tense-card{border:1px solid var(--line);border-radius:14px;background:#fffdf8;padding:13px}
+.m9-tense-card h4{margin:0 0 2px;font-family:Georgia,serif;font-size:18px}
+.m9-formula{min-height:30px;color:var(--muted);font-size:10px;line-height:1.35;margin-bottom:7px}
+.m9-sentence-row{display:grid;grid-template-columns:26px minmax(0,1fr);gap:7px;align-items:start;margin-top:7px;position:relative}
+.m9-sentence-no{width:25px;height:25px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--accent);font-size:10px;font-weight:900;margin-top:7px}
+.m9-sentence-wrap{position:relative}
+.m9-sentence{width:100%;min-height:62px;resize:vertical;border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px 10px 22px;color:var(--ink);font:inherit;font-size:12px;line-height:1.42}
+.m9-sentence:focus{outline:3px solid rgba(139,63,43,.10);border-color:var(--accent)}
+.m9-passive-tag{position:absolute;right:7px;bottom:6px;display:none;padding:2px 6px;border-radius:999px;background:#e9f3eb;border:1px solid #8fad98;color:#365942;font-size:8px;font-weight:900}
+.m9-passive-tag.on{display:block}
+.m9-checklist{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:13px}
+.m9-check{border:1px solid var(--line);border-radius:11px;background:#fffdf8;padding:9px;text-align:center}
+.m9-check strong{display:block;font-family:Georgia,serif;color:var(--accent);font-size:19px}
+.m9-check span{display:block;margin-top:2px;color:var(--muted);font-size:8px;line-height:1.2;text-transform:uppercase;letter-spacing:.04em}
+.m9-check.done{border-color:#88a58f;background:#f3faf4}.m9-check.done strong{color:#3f6f50}
+.m9-submit{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff8e8}
+.m9-submit-copy strong{display:block;font-family:Georgia,serif;font-size:17px}.m9-submit-copy span{display:block;margin-top:2px;color:var(--muted);font-size:10px;line-height:1.35}
+.m9-complete{margin-top:12px;padding:13px;border:1px solid #88a58f;border-radius:12px;background:#f3faf4;color:#365942;font-weight:850;text-align:center}
+.m9-grammar-reminder{margin-top:11px;border:1px solid var(--line);border-radius:11px;background:#fffdf8;overflow:hidden}.m9-grammar-reminder summary{cursor:pointer;padding:10px 12px;font-size:11px;font-weight:850}.m9-grammar-body{padding:0 12px 11px;color:#574b3e;font-size:11px;line-height:1.5}
+@media(max-width:900px){.m9-intro{grid-template-columns:1fr}.m9-tense-grid{grid-template-columns:1fr}.m9-checklist{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.m9-schoolai{grid-template-columns:1fr}.m9-school-actions{justify-content:flex-start}.m9-video-fallback,.m9-submit{align-items:stretch;flex-direction:column}.m9-checklist{grid-template-columns:1fr 1fr}}
 
 </style>
 </head>
@@ -962,6 +1009,123 @@ input.grammar-answer{min-height:auto}
     </div>
   </div>
 
+
+
+  <div class="m9-mission" id="schoolAiMission" data-mission-section="m9">
+    <div class="m9-intro">
+      <div>
+        <div class="kicker">Submission 9 · Wounded Knee</div>
+        <h2 style="margin:5px 0 8px">From Video to AI Conversation to Your Own English</h2>
+        <p class="lead" style="margin-bottom:8px">Watch the video, discuss it with a SchoolAI tutor, paste the recap you receive, then turn your understanding into your own accurate English sentences.</p>
+        <div class="mission">
+          <strong>Your mission:</strong> complete the four stages below. Write <strong>3 sentences in each tense category</strong>. At least <strong>3 of your 12 sentences must also use the passive voice</strong>.
+        </div>
+        <div class="m9-rule-note"><strong>Remember:</strong> passive voice is not a tense. A sentence can be both <em>Simple Past + Passive</em> (“Many Lakota people were killed”) or <em>Present Perfect + Passive</em> (“The event has been remembered for generations”).</div>
+      </div>
+      <div class="m9-scoreboard" aria-live="polite">
+        <div class="m9-stat"><strong id="m9SentenceScore">0 / 12</strong><span>Sentences written</span></div>
+        <div class="m9-stat"><strong id="m9PassiveScore">0 / 3</strong><span>Passive structures</span></div>
+      </div>
+    </div>
+
+    <div class="m9-step">
+      <div class="m9-step-head">
+        <div class="m9-step-no">1</div>
+        <div><h3>Watch the video</h3><p>Watch <strong>“Wounded Knee: Battle or Massacre?”</strong> carefully. The SchoolAI conversation is based on this video and its historical context.</p></div>
+      </div>
+      <div class="m9-video">
+        <iframe src="https://www.youtube-nocookie.com/embed/368RncPAoqA" title="Wounded Knee: Battle or Massacre?" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+      <div class="m9-video-fallback">
+        <span>If the video does not play in the embedded player, open it directly on YouTube.</span>
+        <a class="btn" href="https://www.youtube.com/watch?v=368RncPAoqA" target="_blank" rel="noopener noreferrer">Watch on YouTube ↗</a>
+      </div>
+    </div>
+
+    <div class="m9-step">
+      <div class="m9-step-head">
+        <div class="m9-step-no">2</div>
+        <div><h3>Talk to the SchoolAI tutor</h3><p>Answer the tutor’s questions in English. Try to explain your ideas clearly and pay attention to the tenses and passive structures you have revised.</p></div>
+      </div>
+      <div class="m9-schoolai">
+        <div>
+          <strong>SchoolAI access code</strong><br>
+          <span class="m9-code" id="m9SchoolCode">8V2P-QPQB</span>
+        </div>
+        <div class="m9-school-actions">
+          <button class="btn" id="m9CopyCodeBtn" type="button">Copy access code</button>
+          <a class="btn primary" id="m9OpenSchoolAiBtn" href="https://student.schoolai.com" target="_blank" rel="noopener noreferrer">Open SchoolAI ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="m9-step">
+      <div class="m9-step-head">
+        <div class="m9-step-no">3</div>
+        <div><h3>Paste your SchoolAI recap</h3><p>At the end of the conversation, copy the recap produced from your answers and paste it below. This becomes the bridge between comprehension and your own writing.</p></div>
+      </div>
+      <textarea class="m9-textarea" id="m9Recap" placeholder="Paste your SchoolAI recap here..."></textarea>
+      <div class="m9-meta"><span>Your work is saved automatically on this device.</span><span><strong id="m9WordCount">0</strong> words</span></div>
+    </div>
+
+    <div class="m9-step">
+      <div class="m9-step-head">
+        <div class="m9-step-no">4</div>
+        <div><h3>Write your own sentences</h3><p>Write 3 original sentences about the Wounded Knee Massacre in each category. The website checks completion and identifies likely passive forms; your teacher remains the final judge of linguistic accuracy.</p></div>
+      </div>
+
+      <div class="m9-tense-grid">
+        <div class="m9-tense-card" data-m9-group="present">
+          <h4>Present Simple</h4><div class="m9-formula">For facts, interpretations and ideas that are true today.</div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">1</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="present-1" placeholder="Write a Present Simple sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">2</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="present-2" placeholder="Write a Present Simple sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">3</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="present-3" placeholder="Write a Present Simple sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+        </div>
+
+        <div class="m9-tense-card" data-m9-group="past">
+          <h4>Simple Past / Preterite</h4><div class="m9-formula">For completed historical events.</div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">1</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="past-1" placeholder="Write a Simple Past sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">2</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="past-2" placeholder="Write a Simple Past sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">3</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="past-3" placeholder="Write a Simple Past sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+        </div>
+
+        <div class="m9-tense-card" data-m9-group="perfect">
+          <h4>Present Perfect</h4><div class="m9-formula">Use <strong>have / has + past participle</strong> to connect the past with the present.</div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">1</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="perfect-1" placeholder="Write a Present Perfect sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">2</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="perfect-2" placeholder="Write a Present Perfect sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">3</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="perfect-3" placeholder="Write a Present Perfect sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+        </div>
+
+        <div class="m9-tense-card" data-m9-group="perfectcontinuous">
+          <h4>Present Perfect Continuous</h4><div class="m9-formula">Use <strong>have / has been + verb-ing</strong> for an activity continuing over time.</div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">1</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="perfectcontinuous-1" placeholder="Write a Present Perfect Continuous sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">2</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="perfectcontinuous-2" placeholder="Write a Present Perfect Continuous sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+          <div class="m9-sentence-row"><span class="m9-sentence-no">3</span><div class="m9-sentence-wrap"><textarea class="m9-sentence" data-m9-sentence="perfectcontinuous-3" placeholder="Write a Present Perfect Continuous sentence..."></textarea><span class="m9-passive-tag">Passive ✓</span></div></div>
+        </div>
+      </div>
+
+      <details class="m9-grammar-reminder">
+        <summary>Grammar reminder</summary>
+        <div class="m9-grammar-body"><strong>Present Simple:</strong> base verb / -s · <strong>Simple Past:</strong> past form · <strong>Present Perfect:</strong> have/has + past participle · <strong>Present Perfect Continuous:</strong> have/has been + verb-ing · <strong>Passive:</strong> a form of <em>be</em> + past participle.</div>
+      </details>
+
+      <div class="m9-checklist" aria-live="polite">
+        <div class="m9-check" id="m9CheckPresent"><strong>0 / 3</strong><span>Present Simple</span></div>
+        <div class="m9-check" id="m9CheckPast"><strong>0 / 3</strong><span>Simple Past</span></div>
+        <div class="m9-check" id="m9CheckPerfect"><strong>0 / 3</strong><span>Present Perfect</span></div>
+        <div class="m9-check" id="m9CheckPPC"><strong>0 / 3</strong><span>Present Perfect Continuous</span></div>
+        <div class="m9-check" id="m9CheckPassive"><strong>0 / 3</strong><span>Passive detected</span></div>
+      </div>
+
+      <div class="m9-submit">
+        <div class="m9-submit-copy"><strong id="m9ReadyTitle">Submission not ready yet</strong><span id="m9ReadyText">Paste your recap, complete all 12 sentences and include at least 3 passive structures.</span></div>
+        <button class="btn primary" id="m9SubmitBtn" type="button" disabled>Submit Submission 9</button>
+      </div>
+      <div class="m9-complete hidden" id="m9Complete">✓ Submission 9 completed. Your work has been saved.</div>
+      <div class="grammar-actions"><button class="btn" id="resetMission9Btn" type="button">↻ Redo Submission 9</button></div>
+    </div>
+  </div>
+
   <div class="sources"><strong>Historical sources used:</strong> U.S. National Park Service, <em>The Trail of Tears and the Forced Relocation of the Cherokee Nation</em> and Trail of Tears National Historic Trail materials; Smithsonian National Museum of the American Indian, <em>American Indian Removal: What Does It Mean to Remove a People?</em> Portrait sources include the Smithsonian/National Portrait Gallery, Library of Congress and public-domain reproductions via Wikimedia Commons. “Trail of Tears” is most directly associated with the Cherokee removal of 1838–1839; the other four Southeastern nations also experienced distinct removal histories.</div>
 </section>
 
@@ -1248,7 +1412,8 @@ const MISSION_META=[
   {id:'m5',no:'5',name:'Exit writing',desc:'B1+/B2 argument + AI coach',target:'screen3'},
   {id:'m6',no:'6',name:'Grammar Lab',desc:'Passive voice · 16 challenges',target:'screen3'},
   {id:'m7',no:'7',name:'Gap Challenge',desc:'Reconstruct the Trail of Tears text',target:'screen3'},
-  {id:'m8',no:'8',name:'Let’s revise English Tenses',desc:'20 tense forms + 8 translations',target:'screen3'}
+  {id:'m8',no:'8',name:'Let’s revise English Tenses',desc:'20 tense forms + 8 translations',target:'screen3'},
+  {id:'m9',no:'9',name:'From AI conversation to your own English',desc:'Video + SchoolAI + 12-sentence grammar transfer',target:'screen3'}
 ];
 
 const GRAMMAR_QUESTIONS=[
@@ -2568,6 +2733,171 @@ function initM8Mission(){
 }
 
 
+// ===== Submission 9 · SchoolAI + Grammar Transfer =====
+function m9DefaultState(){
+  return {recap:'',sentences:{},completed:false,tries:0,submittedAt:null,schoolAiOpened:false};
+}
+function m9StateFromProfile(){
+  const base=m9DefaultState();
+  if(!activeProfile)return base;
+  const saved=activeProfile.m9||{};
+  return {...base,...saved,sentences:{...(saved.sentences||{})}};
+}
+function m9WordCount(text){
+  return (String(text||'').trim().match(/\b[\w’'-]+\b/g)||[]).length;
+}
+function m9SentenceReady(text){
+  return String(text||'').trim().split(/\s+/).filter(Boolean).length>=4;
+}
+function m9LooksPassive(text){
+  const t=String(text||'').toLowerCase().replace(/[’']/g,"'");
+  const irregular='made|built|taken|given|kept|lost|held|known|seen|found|shot|killed|surrounded|disarmed|removed|forced|confiscated|remembered|considered|called|described|recognized|recognised|returned|preserved|stolen|left|sent|brought|caught|taught|thought|written|spoken|broken|chosen|driven|forgotten|forgiven|hidden|shown|worn|won|drawn|grown|thrown|blown|beaten|become|begun|done|drunk|eaten|fallen|flown|frozen|gone|risen|run|sung|sunk|swum';
+  const pp='(?:\\w+(?:ed|en|wn|nt|lt|pt|ght)|'+irregular+')';
+  const be='(?:am|is|are|was|were|be|been|being|has\\s+been|have\\s+been|had\\s+been|will\\s+be|can\\s+be|could\\s+be|may\\s+be|might\\s+be|must\\s+be|should\\s+be)';
+  return new RegExp('\\b'+be+'\\s+(?:not\\s+)?(?:\\w+ly\\s+)?'+pp+'\\b','i').test(t);
+}
+function m9Collect(){
+  const recap=$('#m9Recap')?.value||'';
+  const sentences={};
+  $$('[data-m9-sentence]').forEach(el=>{sentences[el.dataset.m9Sentence]=el.value||'';});
+  return {recap,sentences};
+}
+function m9Counts(data){
+  const counts={present:0,past:0,perfect:0,perfectcontinuous:0};
+  Object.entries(data.sentences||{}).forEach(([key,value])=>{
+    const group=key.replace(/-\d+$/,'');
+    if(counts[group]!==undefined && m9SentenceReady(value))counts[group]++;
+  });
+  const passive=Object.values(data.sentences||{}).filter(v=>m9LooksPassive(v)).length;
+  const sentences=Object.values(counts).reduce((a,b)=>a+b,0);
+  const recapWords=m9WordCount(data.recap);
+  return {...counts,passive,sentences,recapWords};
+}
+function m9ProgressPercent(stateLike){
+  const data={recap:stateLike?.recap||'',sentences:stateLike?.sentences||{}};
+  const c=m9Counts(data);
+  const recapPoints=Math.min(20,Math.round(c.recapWords/20*20));
+  const sentencePoints=Math.round(c.sentences/12*60);
+  const passivePoints=Math.round(Math.min(3,c.passive)/3*20);
+  return Math.min(100,recapPoints+sentencePoints+passivePoints);
+}
+function m9Save(invalidate=true){
+  if(!activeProfile)return;
+  const current=m9StateFromProfile();
+  const data=m9Collect();
+  const changed=JSON.stringify({recap:current.recap,sentences:current.sentences})!==JSON.stringify(data);
+  activeProfile.m9={...current,...data};
+  if(invalidate && changed && activeProfile.m9.completed){
+    activeProfile.m9.completed=false;
+    activeProfile.m9.submittedAt=null;
+  }
+  activeProfile.m9Score=m9ProgressPercent(activeProfile.m9);
+  activeProfile.m9Completed=!!activeProfile.m9.completed;
+  activeProfile.m9Tries=Number(activeProfile.m9.tries||0);
+  saveActiveProfile();
+}
+function m9SetCheck(id,n,target){
+  const box=$(id);if(!box)return;
+  const strong=box.querySelector('strong');if(strong)strong.textContent=`${Math.min(n,target)} / ${target}`;
+  box.classList.toggle('done',n>=target);
+}
+function m9UpdateUI(save=true){
+  const data=m9Collect();
+  const c=m9Counts(data);
+  if($('#m9WordCount'))$('#m9WordCount').textContent=c.recapWords;
+  if($('#m9SentenceScore'))$('#m9SentenceScore').textContent=`${c.sentences} / 12`;
+  if($('#m9PassiveScore'))$('#m9PassiveScore').textContent=`${Math.min(c.passive,3)} / 3`;
+  m9SetCheck('#m9CheckPresent',c.present,3);
+  m9SetCheck('#m9CheckPast',c.past,3);
+  m9SetCheck('#m9CheckPerfect',c.perfect,3);
+  m9SetCheck('#m9CheckPPC',c.perfectcontinuous,3);
+  m9SetCheck('#m9CheckPassive',c.passive,3);
+  $$('[data-m9-sentence]').forEach(el=>{
+    const tag=el.parentElement?.querySelector('.m9-passive-tag');
+    if(tag)tag.classList.toggle('on',m9LooksPassive(el.value));
+  });
+  const recapReady=c.recapWords>=20;
+  const sentenceReady=c.present===3&&c.past===3&&c.perfect===3&&c.perfectcontinuous===3;
+  const passiveReady=c.passive>=3;
+  const ready=recapReady&&sentenceReady&&passiveReady;
+  const btn=$('#m9SubmitBtn');if(btn)btn.disabled=!ready;
+  const title=$('#m9ReadyTitle'), info=$('#m9ReadyText');
+  if(title&&info){
+    if(ready){title.textContent='Ready to submit';info.textContent='Your recap, 12 sentences and at least 3 passive structures are present.';}
+    else{
+      title.textContent='Submission not ready yet';
+      const missing=[];
+      if(!recapReady)missing.push('paste a recap of at least 20 words');
+      if(!sentenceReady)missing.push('complete all 12 sentences');
+      if(!passiveReady)missing.push('include at least 3 passive structures');
+      info.textContent='Still to do: '+missing.join(' · ')+'.';
+    }
+  }
+  const completed=!!activeProfile?.m9?.completed;
+  $('#m9Complete')?.classList.toggle('hidden',!completed);
+  if(save){m9Save(true);renderMissionDock();}
+  return {ready,counts:c,data};
+}
+function restoreM9Mission(){
+  const st=m9StateFromProfile();
+  if($('#m9Recap'))$('#m9Recap').value=st.recap||'';
+  $$('[data-m9-sentence]').forEach(el=>{el.value=st.sentences?.[el.dataset.m9Sentence]||'';});
+  m9UpdateUI(false);
+}
+function m9CopyCode(){
+  const code=$('#m9SchoolCode')?.textContent?.trim()||'8V2P-QPQB';
+  const btn=$('#m9CopyCodeBtn');
+  const done=()=>{if(btn){btn.textContent='Copied ✓';setTimeout(()=>{btn.textContent='Copy access code'},1400);}};
+  if(navigator.clipboard?.writeText){navigator.clipboard.writeText(code).then(done).catch(()=>{if(btn)btn.textContent=code;});}
+  else if(btn)btn.textContent=code;
+}
+function m9Submit(){
+  const current=m9UpdateUI(false);
+  if(!current.ready)return;
+  if(!activeProfile)return;
+  m9Save(false);
+  activeProfile.m9=activeProfile.m9||m9DefaultState();
+  activeProfile.m9.completed=true;
+  activeProfile.m9.tries=Number(activeProfile.m9.tries||0)+1;
+  activeProfile.m9.submittedAt=new Date().toISOString();
+  activeProfile.m9Completed=true;
+  activeProfile.m9Tries=activeProfile.m9.tries;
+  activeProfile.m9Score=100;
+  saveActiveProfile();
+  const details=JSON.stringify({
+    kind:'m9_submission',
+    recap:activeProfile.m9.recap,
+    sentences:activeProfile.m9.sentences,
+    recapWords:current.counts.recapWords,
+    passiveCount:current.counts.passive
+  });
+  trackMissionAttempt('m9',100,true,details);
+  $('#m9Complete')?.classList.remove('hidden');
+  renderMissionDock();
+  updateChapterProgress();
+  beep(760,.08);
+}
+function resetMission9(){
+  if(!activeProfile){restoreM9Mission();return;}
+  activeProfile.m9=m9DefaultState();
+  activeProfile.m9Score=0;activeProfile.m9Completed=false;activeProfile.m9Tries=0;
+  saveActiveProfile();
+  restoreM9Mission();
+  renderMissionDock();
+}
+function initM9Mission(){
+  $('#m9CopyCodeBtn')?.addEventListener('click',m9CopyCode);
+  $('#m9OpenSchoolAiBtn')?.addEventListener('click',()=>{
+    if(activeProfile){activeProfile.m9={...m9StateFromProfile(),schoolAiOpened:true};saveActiveProfile();}
+  });
+  $('#m9Recap')?.addEventListener('input',()=>m9UpdateUI(true));
+  $$('[data-m9-sentence]').forEach(el=>el.addEventListener('input',()=>m9UpdateUI(true)));
+  $('#m9SubmitBtn')?.addEventListener('click',m9Submit);
+  $('#resetMission9Btn')?.addEventListener('click',resetMission9);
+  restoreM9Mission();
+}
+
+
 const PROFILE_STORE='trailOfTearsStudentProfilesV2';
 const ACTIVE_PROFILE_STORE='trailOfTearsActiveProfileV2';
 let activeProfile=null;
@@ -2680,6 +3010,13 @@ function missionExtra(missionId){
     const stars=Math.min(5,Math.floor((score+19.999)/20));
     return `${starString(stars,5)} · ${validated}/28 validated`;
   }
+  if(missionId==='m9'){
+    const st=activeProfile.m9||m9DefaultState();
+    const c=m9Counts({recap:st.recap||'',sentences:st.sentences||{}});
+    const score=st.completed?100:m9ProgressPercent(st);
+    const stars=Math.min(5,Math.floor((score+19.999)/20));
+    return `${starString(stars,5)} · ${c.sentences}/12 sentences · ${Math.min(c.passive,3)}/3 passive`;
+  }
   return '';
 }
 function renderStudentChip(){
@@ -2739,6 +3076,10 @@ function chapterMissionPercent(missionId){
     const tense=Object.values(activeProfile.m8?.tenseAnswers||{}).filter(v=>String(v||'').trim()).length;
     const trans=Object.values(activeProfile.m8?.translationAnswers||{}).filter(v=>String(v||'').trim()).length;
     return Math.round((tense+trans)/28*100);
+  }
+  if(missionId==='m9'){
+    if(activeProfile.m9?.completed)return 100;
+    return m9ProgressPercent(activeProfile.m9||m9DefaultState());
   }
   return 0;
 }
@@ -2818,12 +3159,14 @@ function syncMissionVisibility(){
   const m6=$('#grammarMission');
   const m7=$('#gapMission');
   const m8=$('#tensesMission');
+  const m9=$('#schoolAiMission');
   if(m3)m3.classList.remove('hidden');
   if(m4)m4.classList.remove('hidden');
   if(m5)m5.classList.remove('hidden');
   if(m6)m6.classList.remove('hidden');
   if(m7)m7.classList.remove('hidden');
   if(m8)m8.classList.remove('hidden');
+  if(m9)m9.classList.remove('hidden');
 }
 function requestMission(missionId){
   openMission(missionId);
@@ -2856,6 +3199,9 @@ function openMission(missionId){
   }else if(missionId==='m8'){
     restoreM8Mission();
     setTimeout(()=>$('#tensesMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }else if(missionId==='m9'){
+    restoreM9Mission();
+    setTimeout(()=>$('#schoolAiMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
   }
 }
 
@@ -2881,6 +3227,7 @@ function restorePersonalProgress(){
   updateM6Progress();
   restoreGapMission();
   restoreM8Mission();
+  restoreM9Mission();
 }
 
 function showRegistration(isChange=false){
@@ -3510,6 +3857,7 @@ updateM6Progress();
 initGapMission();
 restoreGapMission();
 initM8Mission();
+initM9Mission();
 $('#checkGrammarABtn').addEventListener('click',()=>checkGrammarPart('A'));
 $('#checkGrammarBBtn').addEventListener('click',()=>checkGrammarPart('B'));
 $('#focusWrongABtn').addEventListener('click',()=>focusWrongGrammarPart('A'));
@@ -3530,6 +3878,7 @@ $('#resetBtn').addEventListener('click',()=>{
   resetMission6();
   resetMission7();
   resetMission8();
+  resetMission9();
   activeMission=null;
   renderMissionDock();
   show('screenHome');
