@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Trail of Tears v0.6.36 — Submission 10 Vocabulary Showdown + Teacher Dashboard M1–M10 -->
+<!-- Trail of Tears v0.6.37 — Mission 10 navigation + Review Deck fix; Teacher Dashboard M1–M10 -->
 <title>Native American Voices &amp; Territories | Interactive Learning Journey</title>
 <style>
 :root{--ink:#2b241b;--paper:#f4ecdc;--paper2:#fbf7ed;--line:#cab995;--accent:#8b3f2b;--gold:#d6a745;--muted:#756a5a;--shadow:0 16px 40px rgba(48,36,21,.16)}
@@ -1449,12 +1449,12 @@ function updateM5Progress(){
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function beep(freq=520,dur=.07){if(!soundOn)return;try{const C=window.AudioContext||window.webkitAudioContext,c=new C(),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;o.type='sine';o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(.06,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+dur);o.start();o.stop(c.currentTime+dur)}catch(e){}}
 
-function show(id){
+function show(id,scrollTop=true){
   ['screenHome','screen1','screenTransition','screen2','screen3'].forEach(x=>{
     const el=document.getElementById(x);
     if(el) el.classList.toggle('hidden',x!==id);
   });
-  window.scrollTo({top:0,behavior:'smooth'});
+  if(scrollTop) window.scrollTo({top:0,behavior:'smooth'});
 }
 
 const MISSION_META=[
@@ -3014,6 +3014,7 @@ const M10_CONTEXT=[
 ];
 
 function m10Norm(v){return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘`]/g,"'").replace(/[^a-z0-9' -]+/g,' ').replace(/\s+/g,' ').trim();}
+function m10Esc(v){return String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]));}
 function m10Lev(a,b){a=m10Norm(a);b=m10Norm(b);const m=a.length,n=b.length;const d=Array.from({length:m+1},()=>Array(n+1).fill(0));for(let i=0;i<=m;i++)d[i][0]=i;for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
 function m10CheckAnswer(given,accepted){const g=m10Norm(given);if(!g)return {ok:false,near:false};const aa=(accepted||[]).map(m10Norm).filter(Boolean);if(aa.includes(g))return {ok:true,near:false};let best=999;for(const a of aa)best=Math.min(best,m10Lev(g,a));const limit=g.length>=18?2:g.length>=7?1:0;return {ok:best<=limit,near:best>0&&best<=limit};}
 function m10Shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
@@ -3040,18 +3041,18 @@ function m10Render(){const arena=$('#m10Arena');if(!arena||!activeProfile)return
   const card=m10Current(st);
   if(card.mode==='done'){
     arena.innerHTML=`<div class="m10-finish"><h3>Vocabulary Showdown completed</h3><p>You have completed all five rounds and cleared your personal Review Deck.</p><div class="m10-finish-stats"><div><strong>${m10InitialScore(st)}%</strong><span>First run</span></div><div><strong>${st.points||0}</strong><span>Points</span></div><div><strong>${st.maxStreak||0}</strong><span>Best streak</span></div></div><p><strong>40 / 40 core vocabulary items mastered.</strong></p></div>`;return;}
-  const isReview=card.mode==='review';const total=isReview?Math.max(1,st.reviewQueue.length):10;const pos=isReview?1:st.index+1;const prompt=m10PromptText(card);const contextHtml=card.mode==='context'?esc(prompt).replace('______','<span class="m10-blank">?</span>'):esc(prompt);
-  arena.innerHTML=`${isReview?`<div class="m10-review-banner"><strong>Review Deck:</strong> ${st.reviewQueue.length} item${st.reviewQueue.length===1?'':'s'} still need to be mastered. A wrong answer simply comes back later.</div>`:''}<div class="m10-card-wrap"><div class="m10-card"><span class="m10-card-label">${esc(m10Label(card,st))}</span><span class="m10-card-count">${isReview?'Review':`Card ${pos} / ${total}`}</span><div class="m10-prompt ${card.mode==='context'?'m10-context':''}">${contextHtml}</div><div class="m10-input-row"><input class="m10-input" id="m10Answer" autocomplete="off" spellcheck="false" placeholder="Type your answer…"><button class="btn primary" id="m10CheckBtn" type="button">Check</button></div><div id="m10Feedback"></div><div class="m10-next-row hidden" id="m10NextRow"><button class="btn primary" id="m10NextBtn" type="button">Next card →</button></div></div></div><div class="m10-help">Press Enter to check your answer. After checking, press Enter again for the next card.</div>`;
+  const isReview=card.mode==='review';const total=isReview?Math.max(1,st.reviewQueue.length):10;const pos=isReview?1:st.index+1;const prompt=m10PromptText(card);const contextHtml=card.mode==='context'?m10Esc(prompt).replace('______','<span class="m10-blank">?</span>'):m10Esc(prompt);
+  arena.innerHTML=`${isReview?`<div class="m10-review-banner"><strong>Review Deck:</strong> ${st.reviewQueue.length} item${st.reviewQueue.length===1?'':'s'} still need to be mastered. A wrong answer simply comes back later.</div>`:''}<div class="m10-card-wrap"><div class="m10-card"><span class="m10-card-label">${m10Esc(m10Label(card,st))}</span><span class="m10-card-count">${isReview?'Review':`Card ${pos} / ${total}`}</span><div class="m10-prompt ${card.mode==='context'?'m10-context':''}">${contextHtml}</div><div class="m10-input-row"><input class="m10-input" id="m10Answer" autocomplete="off" spellcheck="false" placeholder="Type your answer…"><button class="btn primary" id="m10CheckBtn" type="button">Check</button></div><div id="m10Feedback"></div><div class="m10-next-row hidden" id="m10NextRow"><button class="btn primary" id="m10NextBtn" type="button">Next card →</button></div></div></div><div class="m10-help">Press Enter to check your answer. After checking, press Enter again for the next card.</div>`;
   const input=$('#m10Answer'),check=$('#m10CheckBtn');input?.focus();check?.addEventListener('click',m10CheckCurrent);input?.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();m10CheckCurrent();}});
 }
 function m10SaveQuiet(st){if(!activeProfile)return;activeProfile.m10=st;activeProfile.m10Score=m10ProgressPercent(st);activeProfile.m10Completed=!!st.completed;activeProfile.m10Tries=Number(st.tries||0);saveActiveProfile();}
-function m10CheckCurrent(){const st=m10State(),card=m10Current(st),input=$('#m10Answer');if(!input||!input.value.trim()||card.mode==='done')return;const res=m10CheckAnswer(input.value,m10AcceptedFor(card));const answer=m10DisplayAnswer(card);const term=card.mode==='context'?m10Term(card.context.term):card.term;const id=card.id;const isMain=st.stage<5;const key=card.key;let firstTime=false;
+function m10CheckCurrent(){const st=m10State(),card=m10Current(st),input=$('#m10Answer');if(!input||!input.value.trim()||card.mode==='done')return;const res=m10CheckAnswer(input.value,m10AcceptedFor(card));const answer=m10DisplayAnswer(card);const term=card.mode==='context'?m10Term(card.context.term):card.term;const id=card.mode==='context'?card.context.term:card.id;const isMain=st.stage<5;const key=card.key;let firstTime=false;
   if(isMain&&!Object.prototype.hasOwnProperty.call(st.answeredMain,key)){firstTime=true;st.answeredMain[key]=!!res.ok;st.mainAnswered=Number(st.mainAnswered||0)+1;if(res.ok)st.firstCorrect=Number(st.firstCorrect||0)+1;}
   const scoreThis=!isMain||firstTime;
   if(scoreThis&&res.ok){st.streak=Number(st.streak||0)+1;st.maxStreak=Math.max(Number(st.maxStreak||0),st.streak);st.points=Number(st.points||0)+(card.mode==='review'?50:(res.near?80:100));if(st.streak>0&&st.streak%5===0)st.points+=50;if(!st.mastered.includes(id))st.mastered.push(id);}
   else if(scoreThis&&!res.ok){st.streak=0;st.mistakes[id]=Number(st.mistakes[id]||0)+1;st.mastered=st.mastered.filter(x=>x!==id);}
   m10SaveQuiet(st);$('#m10Streak').textContent=st.streak;$('#m10Points').textContent=st.points;$('#m10Mastered').textContent=`${Math.min(40,st.mastered.length)} / 40`;
-  input.disabled=true;$('#m10CheckBtn').disabled=true;const fb=$('#m10Feedback');if(fb){fb.className=`m10-feedback ${res.ok?(res.near?'close':'good'):'bad'}`;fb.innerHTML=res.ok?(res.near?`Almost — accepted. Check the exact form:<span class="m10-answer">${esc(answer)}</span><span class="m10-example">${esc(term?.ex||'')}</span>`:`Correct!<span class="m10-answer">${esc(answer)}</span><span class="m10-example">${esc(term?.ex||'')}</span>`):`Not this time — this item will return in your Review Deck.<span class="m10-answer">${esc(answer)}</span><span class="m10-example">${esc(term?.ex||'')}</span>`;}
+  input.disabled=true;$('#m10CheckBtn').disabled=true;const fb=$('#m10Feedback');if(fb){fb.className=`m10-feedback ${res.ok?(res.near?'close':'good'):'bad'}`;fb.innerHTML=res.ok?(res.near?`Almost — accepted. Check the exact form:<span class="m10-answer">${m10Esc(answer)}</span><span class="m10-example">${m10Esc(term?.ex||'')}</span>`:`Correct!<span class="m10-answer">${m10Esc(answer)}</span><span class="m10-example">${m10Esc(term?.ex||'')}</span>`):`Not this time — this item will return in your Review Deck.<span class="m10-answer">${m10Esc(answer)}</span><span class="m10-example">${m10Esc(term?.ex||'')}</span>`;}
   $('#m10NextRow')?.classList.remove('hidden');const next=$('#m10NextBtn');if(next){next.focus();next.addEventListener('click',()=>m10Advance(res.ok));next.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();m10Advance(res.ok);}});}
 }
 function m10Advance(lastCorrect){const st=m10State();if(st.stage<5){const order=m10EnsureOrder(st,st.stage);st.index++;if(st.index>=order.length){st.index=0;st.stage++;if(st.stage<5)m10EnsureOrder(st,st.stage);if(st.stage===5){m10TrackMainIfNeeded(st);const missed=Object.keys(st.mistakes||{}).filter(id=>Number(st.mistakes[id]||0)>0);st.reviewQueue=m10Shuffle(missed);for(const id of st.reviewQueue)st.reviewDirections[id]=Math.random()<.5?'fr-en':'en-fr';if(!st.reviewQueue.length){m10Complete(st);m10Render();return;}}}}
@@ -3081,7 +3082,7 @@ async function sendTrackingEvent(mission,event,score=null,completed=false,detail
     completed:!!completed,
     details:(details && typeof details==='object') ? details : {note:String(details||'')},
     clientTime:new Date().toISOString(),
-    appVersion:'0.6.36'
+    appVersion:'0.6.37'
   };
   try{
     const r=await fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
@@ -3330,23 +3331,21 @@ function renderMissionDock(){
 async function verifyMissionCode(missionId,code,errorNode,button){
   openMission(missionId);
 }
-function syncMissionVisibility(){
-  const m3=$('#mission3Content');
-  const m4=$('#extensionQuiz');
-  const m5=$('#exitWritingMission');
-  const m6=$('#grammarMission');
-  const m7=$('#gapMission');
-  const m8=$('#tensesMission');
-  const m9=$('#schoolAiMission');
-  const m10=$('#vocabShowdownMission');
-  if(m3)m3.classList.remove('hidden');
-  if(m4)m4.classList.remove('hidden');
-  if(m5)m5.classList.remove('hidden');
-  if(m6)m6.classList.remove('hidden');
-  if(m7)m7.classList.remove('hidden');
-  if(m8)m8.classList.remove('hidden');
-  if(m9)m9.classList.remove('hidden');
-  if(m10)m10.classList.remove('hidden');
+function syncMissionVisibility(selectedMission=null){
+  const sections={
+    m3:$('#mission3Content'),
+    m4:$('#extensionQuiz'),
+    m5:$('#exitWritingMission'),
+    m6:$('#grammarMission'),
+    m7:$('#gapMission'),
+    m8:$('#tensesMission'),
+    m9:$('#schoolAiMission'),
+    m10:$('#vocabShowdownMission')
+  };
+  Object.entries(sections).forEach(([id,el])=>{
+    if(!el)return;
+    el.classList.toggle('hidden',selectedMission!==id);
+  });
 }
 function requestMission(missionId){
   openMission(missionId);
@@ -3358,33 +3357,27 @@ function openMission(missionId){
   if(!meta)return;
   activeMission=missionId;
   if(activeProfile){activeProfile.lastMission=missionId;saveActiveProfile();trackMissionStarted(missionId);}
-  syncMissionVisibility();
+  syncMissionVisibility(['m3','m4','m5','m6','m7','m8','m9','m10'].includes(missionId)?missionId:null);
   renderMissionDock();
 
   if(missionId==='m2'){
     show('screenTransition');
     return;
   }
-  show(meta.target);
+  const sharedSubmission=['m3','m4','m5','m6','m7','m8','m9','m10'].includes(missionId);
+  show(meta.target,!sharedSubmission);
   if(missionId==='m2'){
     setTimeout(()=>startRoutes(),350);
-  }else if(missionId==='m4'){
-    setTimeout(()=>$('#extensionQuiz')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m5'){
-    setTimeout(()=>$('#exitWritingMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m6'){
-    setTimeout(()=>$('#grammarMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m7'){
-    setTimeout(()=>$('#gapMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m8'){
-    restoreM8Mission();
-    setTimeout(()=>$('#tensesMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m9'){
-    restoreM9Mission();
-    setTimeout(()=>$('#schoolAiMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
-  }else if(missionId==='m10'){
-    restoreM10Mission();
-    setTimeout(()=>$('#vocabShowdownMission')?.scrollIntoView({behavior:'smooth',block:'start'}),120);
+  }else{
+    if(missionId==='m8')restoreM8Mission();
+    if(missionId==='m9')restoreM9Mission();
+    if(missionId==='m10')restoreM10Mission();
+    const targets={
+      m3:'#mission3Content',m4:'#extensionQuiz',m5:'#exitWritingMission',m6:'#grammarMission',
+      m7:'#gapMission',m8:'#tensesMission',m9:'#schoolAiMission',m10:'#vocabShowdownMission'
+    };
+    const target=targets[missionId];
+    if(target)requestAnimationFrame(()=>requestAnimationFrame(()=>$(target)?.scrollIntoView({behavior:'auto',block:'start'})));
   }
 }
 
@@ -3411,6 +3404,7 @@ function restorePersonalProgress(){
   restoreGapMission();
   restoreM8Mission();
   restoreM9Mission();
+  restoreM10Mission();
 }
 
 function showRegistration(isChange=false){
@@ -3440,7 +3434,7 @@ function registerStudent(){
   saveActiveProfile();
   sendTrackingEvent('', 'connected', null, false, 'Student connected');
   $('#registrationOverlay').classList.add('hidden');
-  syncMissionVisibility();
+  syncMissionVisibility(null);
   renderMissionDock();
 
   const draft=$('#exitWriting');
@@ -3460,7 +3454,7 @@ function initStudentAccess(){
   const profiles=safeProfiles();
   if(activeKey && profiles[activeKey]){
     activeProfile=profiles[activeKey];
-    syncMissionVisibility();
+    syncMissionVisibility(null);
     renderMissionDock();
     const draft=$('#exitWriting');
     if(draft && activeProfile.writing){
