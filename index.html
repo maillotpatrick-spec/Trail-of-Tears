@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Trail of Tears v0.6.37 — Mission 10 navigation + Review Deck fix; Teacher Dashboard M1–M10 -->
+<!-- Trail of Tears v0.6.38 — Mission 10 navigation + Review Deck fix; Teacher Dashboard M1–M10 -->
 <title>Native American Voices &amp; Territories | Interactive Learning Journey</title>
 <style>
 :root{--ink:#2b241b;--paper:#f4ecdc;--paper2:#fbf7ed;--line:#cab995;--accent:#8b3f2b;--gold:#d6a745;--muted:#756a5a;--shadow:0 16px 40px rgba(48,36,21,.16)}
@@ -3082,7 +3082,7 @@ async function sendTrackingEvent(mission,event,score=null,completed=false,detail
     completed:!!completed,
     details:(details && typeof details==='object') ? details : {note:String(details||'')},
     clientTime:new Date().toISOString(),
-    appVersion:'0.6.37'
+    appVersion:'0.6.38'
   };
   try{
     const r=await fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
@@ -4062,6 +4062,392 @@ $('#resetBtn').addEventListener('click',()=>{
   renderMissionDock();
   show('screenHome');
 });
+</script>
+
+<!-- ===== Submission 11 · BEARS EARS — Passive Form (v0.6.38) ===== -->
+<script>
+/*
+  Submission 11 add-on for Trail of Tears / Memory and Territory v0.6.37
+  Grammar: BEARS EARS — Passive Form
+  Adds an interactive 15-item active/passive transformation exercise.
+*/
+(function(){
+  'use strict';
+
+  const M11_ID='m11';
+  const M11_META={id:'m11',no:'11',name:'Grammar: BEARS EARS — Passive Form',desc:'15 active ↔ passive transformations',target:'screen3'};
+
+  const M11_ITEMS=[
+    {
+      no:1, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'Five Native American Tribes formed the Bears Ears Inter-Tribal Coalition in 2015.',
+      mainVerb:['form'], tense:'simple past',
+      verbOK:a=>/\bwas\s+formed\b/.test(a),
+      model:'The Bears Ears Inter-Tribal Coalition was formed by five Native American Tribes in 2015.'
+    },
+    {
+      no:2, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'The coalition submitted a proposal to protect the Bears Ears landscape in 2015.',
+      mainVerb:['submit'], tense:'simple past',
+      verbOK:a=>/\bwas\s+submitted\b/.test(a),
+      model:'A proposal to protect the Bears Ears landscape was submitted by the coalition in 2015.'
+    },
+    {
+      no:3, dir:'PASSIVE → ACTIVE', target:'active',
+      prompt:'Bears Ears National Monument was established by President Obama in 2016.',
+      mainVerb:['establish'], tense:'simple past',
+      verbOK:a=>/\bpresident\s+obama\s+established\b/.test(a) && !/\bwas\s+established\b/.test(a),
+      model:'President Obama established Bears Ears National Monument in 2016.'
+    },
+    {
+      no:4, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'Many Native American communities consider the Bears Ears landscape sacred.',
+      mainVerb:['consider'], tense:'simple present',
+      verbOK:a=>/\b(is|are)\s+considered\b/.test(a),
+      model:'The Bears Ears landscape is considered sacred by many Native American communities.'
+    },
+    {
+      no:5, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'Indigenous peoples have used these lands for ceremonies and traditional practices for generations.',
+      mainVerb:['use'], tense:'present perfect',
+      verbOK:a=>/\bhave\s+been\s+used\b/.test(a),
+      model:'These lands have been used by Indigenous peoples for ceremonies and traditional practices for generations.'
+    },
+    {
+      no:6, dir:'PASSIVE → ACTIVE', target:'active',
+      prompt:'A cooperative management agreement was signed by the five Tribes and federal agencies in 2022.',
+      mainVerb:['sign'], tense:'simple past',
+      verbOK:a=>/\b(five|5)\s+tribes\b[\s\S]{0,90}\bfederal\s+agencies\b[\s\S]{0,90}\bsigned\b/.test(a) && !/\b(was|were)\s+signed\b/.test(a),
+      model:'The five Tribes and federal agencies signed a cooperative management agreement in 2022.'
+    },
+    {
+      no:7, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'President Trump reduced the size of Bears Ears National Monument in 2017.',
+      mainVerb:['reduce'], tense:'simple past',
+      verbOK:a=>/\bwas\s+reduced\b/.test(a),
+      model:'The size of Bears Ears National Monument was reduced by President Trump in 2017.'
+    },
+    {
+      no:8, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'Tribal Nations challenged the 2017 reduction in federal court.',
+      mainVerb:['challenge'], tense:'simple past',
+      verbOK:a=>/\bwas\s+challenged\b/.test(a),
+      model:'The 2017 reduction was challenged by Tribal Nations in federal court.'
+    },
+    {
+      no:9, dir:'PASSIVE → ACTIVE', target:'active',
+      prompt:'The monument’s boundaries were restored by the Biden administration in 2021.',
+      mainVerb:['restore'], tense:'simple past',
+      verbOK:a=>/\bbiden\s+administration\s+restored\b/.test(a) && !/\bwere\s+restored\b/.test(a),
+      model:'The Biden administration restored the monument’s boundaries in 2021.'
+    },
+    {
+      no:10, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'The five Tribes have repeatedly requested a stronger role in the stewardship of Bears Ears.',
+      mainVerb:['request'], tense:'present perfect',
+      verbOK:a=>/\bhas\s+(?:repeatedly\s+)?been\s+(?:repeatedly\s+)?requested\b/.test(a),
+      model:'A stronger role in the stewardship of Bears Ears has repeatedly been requested by the five Tribes.'
+    },
+    {
+      no:11, dir:'PASSIVE → ACTIVE', target:'active',
+      prompt:'Traditional Indigenous Knowledge has been used by Tribal representatives to inform land-management proposals.',
+      mainVerb:['use'], tense:'present perfect',
+      verbOK:a=>/\btribal\s+representatives\s+have\s+used\b/.test(a) && !/\bhave\s+been\s+used\b/.test(a),
+      model:'Tribal representatives have used Traditional Indigenous Knowledge to inform land-management proposals.'
+    },
+    {
+      no:12, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'President Trump modified the monument’s boundaries again in July 2026.',
+      mainVerb:['modify'], tense:'simple past',
+      verbOK:a=>/\bwere\s+modified\b/.test(a),
+      model:'The monument’s boundaries were modified again by President Trump in July 2026.'
+    },
+    {
+      no:13, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'The five Tribal Nations reaffirmed their commitment to protecting Bears Ears after the 2026 boundary changes.',
+      mainVerb:['reaffirm'], tense:'simple past',
+      verbOK:a=>/\bwas\s+reaffirmed\b/.test(a),
+      model:'The five Tribal Nations’ commitment to protecting Bears Ears was reaffirmed after the 2026 boundary changes.'
+    },
+    {
+      no:14, dir:'ACTIVE → PASSIVE', target:'passive',
+      prompt:'Tribal Nations can use legal action to defend protections for ancestral lands.',
+      mainVerb:['use'], tense:'modal can',
+      verbOK:a=>/\bcan\s+be\s+used\b/.test(a),
+      model:'Legal action can be used by Tribal Nations to defend protections for ancestral lands.'
+    },
+    {
+      no:15, dir:'PASSIVE → ACTIVE', target:'active',
+      prompt:'For generations, sacred landscapes have been protected and cared for by Indigenous communities.',
+      mainVerb:['protect and care for','protect','care for'], tense:'present perfect',
+      verbOK:a=>/\bindigenous\s+communities\s+have\s+protected\b[\s\S]{0,80}\b(?:have\s+)?cared\s+for\b/.test(a) && !/\bhave\s+been\s+protected\b/.test(a),
+      model:'For generations, Indigenous communities have protected and cared for sacred landscapes.'
+    }
+  ];
+
+  const tenseOptions=['','simple present','simple past','present perfect','modal can','modal must','future with will'];
+
+  function q(sel,root=document){return root.querySelector(sel)}
+  function qa(sel,root=document){return [...root.querySelectorAll(sel)]}
+  function norm(s){
+    return String(s||'').toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[’‘]/g,"'")
+      .replace(/[^a-z0-9'\-\s]/g,' ')
+      .replace(/\s+/g,' ').trim();
+  }
+  function lev(a,b){
+    a=norm(a);b=norm(b);
+    const m=a.length,n=b.length,d=Array.from({length:m+1},()=>Array(n+1).fill(0));
+    for(let i=0;i<=m;i++)d[i][0]=i;
+    for(let j=0;j<=n;j++)d[0][j]=j;
+    for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+    return d[m][n];
+  }
+  function mainVerbOK(value,item){
+    const v=norm(value);
+    return item.mainVerb.some(x=>v===norm(x) || lev(v,x)<=1);
+  }
+  function fullEnough(a){return norm(a).split(/\s+/).filter(Boolean).length>=4;}
+
+  function state(){
+    if(typeof activeProfile!=='undefined' && activeProfile){
+      if(!activeProfile.m11) activeProfile.m11={answers:{},validated:{},analysis:{},completed:false,tries:0};
+      activeProfile.m11.answers=activeProfile.m11.answers||{};
+      activeProfile.m11.validated=activeProfile.m11.validated||{};
+      activeProfile.m11.analysis=activeProfile.m11.analysis||{};
+      return activeProfile.m11;
+    }
+    window.__m11State=window.__m11State||{answers:{},validated:{},analysis:{},completed:false,tries:0};
+    return window.__m11State;
+  }
+  function save(){
+    if(typeof activeProfile!=='undefined' && activeProfile && typeof saveActiveProfile==='function') saveActiveProfile();
+  }
+  function validatedCount(){return Object.values(state().validated||{}).filter(Boolean).length;}
+  function pct(){return Math.round(validatedCount()/M11_ITEMS.length*100);}
+  function stars(){const p=pct();return Math.min(5,Math.floor((p+19.999)/20));}
+  function starStringLocal(n){return '★'.repeat(n)+'☆'.repeat(Math.max(0,5-n));}
+
+  function injectStyle(){
+    if(q('#m11Style'))return;
+    const s=document.createElement('style');
+    s.id='m11Style';
+    s.textContent=`
+.m11-mission{margin-top:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper2);padding:20px}
+.m11-head{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:16px;align-items:start}
+.m11-score{border:1px solid var(--line);border-radius:15px;background:#fffaf0;padding:12px;text-align:center}
+.m11-score strong{display:block;font-family:Georgia,serif;color:var(--accent);font-size:30px}.m11-score span{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.m11-bar{height:9px;background:#e5d9c4;border-radius:99px;overflow:hidden;margin-top:9px}.m11-bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .25s}
+.m11-grid{display:grid;gap:12px;margin-top:16px}.m11-card{border:1px solid var(--line);border-radius:14px;background:#fffdf8;padding:14px}.m11-card.ok{border-color:#7f9d76;background:#f3f8ef}
+.m11-meta{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}.m11-prompt{font-family:Georgia,serif;font-size:17px;line-height:1.45;margin:7px 0 10px}
+.m11-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.m11-input,.m11-diagnostic input,.m11-diagnostic select{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px 11px;font:inherit}.m11-input:focus,.m11-diagnostic input:focus,.m11-diagnostic select:focus{outline:3px solid rgba(139,63,43,.12);border-color:var(--accent)}
+.m11-feedback{min-height:22px;margin-top:8px;font-size:12px;line-height:1.45;font-weight:700}.m11-feedback.good{color:#3f6f50}.m11-feedback.bad{color:#9b3f31}.m11-feedback.neutral{color:#6b6257}
+.m11-diagnostic{margin-top:10px;border:1px solid #d7bea2;border-radius:12px;background:#fff7eb;padding:12px}.m11-diagnostic-title{font-weight:850;margin-bottom:8px}.m11-diag-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}.m11-diagnostic label{font-size:10px;font-weight:800;color:#665b4c}.m11-diagnostic label span{display:block;margin-bottom:4px}.m11-diag-feedback{margin-top:7px;font-size:11px;line-height:1.4}
+.m11-actions{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-top:15px}.m11-note{font-size:11px;color:var(--muted);line-height:1.45}.m11-model{margin-top:8px;padding:9px 11px;border-radius:10px;background:#eef5e7;border:1px solid #9fb28e;font-size:12px;line-height:1.45}
+.m11-complete{margin-top:14px;padding:14px;border:1px solid #7f9d76;border-radius:13px;background:#edf6e8;text-align:center;font-weight:850;color:#365942}.m11-sources{margin-top:14px;font-size:10px;line-height:1.45;color:var(--muted)}.m11-sources a{color:#6d382b}
+@media(max-width:760px){.m11-head{grid-template-columns:1fr}.m11-diag-grid{grid-template-columns:1fr}.m11-row{grid-template-columns:1fr}.m11-row .btn{width:100%}}
+`;
+    document.head.appendChild(s);
+  }
+
+  function missionHTML(){
+    return `<div class="m11-mission hidden" id="bearsEarsPassiveMission" data-mission-section="m11">
+      <div class="m11-head">
+        <div>
+          <div class="kicker">Submission 11 · Grammar</div>
+          <h2 style="margin:5px 0 8px">BEARS EARS — Passive Form</h2>
+          <p class="lead" style="margin-bottom:8px">Rewrite each sentence in the <strong>opposite voice</strong> (active ↔ passive). Keep the same tense and meaning.</p>
+          <div class="mission"><strong>Grammar focus:</strong> the correction concentrates on the <strong>verbal group</strong>. Minor spelling mistakes elsewhere in your sentence will not block a correct answer. If the verb construction is wrong, you will first analyse the <strong>main verb</strong> and its <strong>tense</strong> before trying again.</div>
+        </div>
+        <div class="m11-score" aria-live="polite"><strong id="m11Score">0 / 15</strong><span id="m11Stars">☆☆☆☆☆ · validated</span><div class="m11-bar"><div id="m11Bar"></div></div></div>
+      </div>
+      <div class="m11-grid" id="m11Grid"></div>
+      <div class="m11-complete hidden" id="m11Complete">✓ Submission 11 completed. You have validated all 15 transformations.</div>
+      <div class="m11-actions"><div class="m11-note">A correct verbal group is the priority. Once an item is validated, you can reveal a model sentence for comparison.</div><button class="btn" id="resetMission11Btn" type="button">↻ Redo Submission 11</button></div>
+      <div class="m11-sources"><strong>Context sources:</strong> <a href="https://www.blm.gov/programs/national-conservation-lands/utah/bears-ears-national-monument" target="_blank" rel="noopener">U.S. Bureau of Land Management — Bears Ears National Monument</a>; <a href="https://www.bearsearscoalition.org/about-the-coalition/" target="_blank" rel="noopener">Bears Ears Inter-Tribal Coalition</a>; <a href="https://narf.org/cases/bears-ears/" target="_blank" rel="noopener">Native American Rights Fund — Bears Ears case</a>. The history is used here as a grammar context; this activity does not make a legal or political judgment.</div>
+    </div>`;
+  }
+
+  function injectMission(){
+    if(q('#bearsEarsPassiveMission'))return;
+    const m10=q('#vocabShowdownMission');
+    if(!m10)return;
+    m10.insertAdjacentHTML('afterend',missionHTML());
+  }
+
+  function cardHTML(item){
+    return `<div class="m11-card" data-m11="${item.no}">
+      <div class="m11-meta">${item.no}. ${item.dir}</div>
+      <div class="m11-prompt">${item.prompt}</div>
+      <div class="m11-row"><input class="m11-input" data-m11-answer="${item.no}" autocomplete="off" spellcheck="true" placeholder="Write the complete transformed sentence…"><button class="btn primary" data-m11-check="${item.no}" type="button">Check</button></div>
+      <div class="m11-feedback neutral" data-m11-feedback="${item.no}" aria-live="polite"></div>
+      <div class="m11-diagnostic hidden" data-m11-diag="${item.no}">
+        <div class="m11-diagnostic-title">Focus on the verb before you try again.</div>
+        <div class="m11-diag-grid">
+          <label><span>What is the main verb of the original sentence?</span><input data-m11-mainverb="${item.no}" placeholder="base form"></label>
+          <label><span>Which tense is it?</span><select data-m11-tense="${item.no}">${tenseOptions.map(x=>`<option value="${x}">${x||'Choose a tense…'}</option>`).join('')}</select></label>
+          <button class="btn" type="button" data-m11-analysis="${item.no}">Check my analysis</button>
+        </div>
+        <div class="m11-diag-feedback" data-m11-diagfeedback="${item.no}" aria-live="polite"></div>
+      </div>
+      <div class="m11-model hidden" data-m11-model="${item.no}"></div>
+    </div>`;
+  }
+
+  function render(){
+    const grid=q('#m11Grid');if(!grid)return;
+    if(!grid.dataset.built){grid.innerHTML=M11_ITEMS.map(cardHTML).join('');grid.dataset.built='1';bindCards();}
+    restore();updateProgress();
+  }
+
+  function bindCards(){
+    qa('[data-m11-answer]').forEach(el=>{
+      el.addEventListener('input',()=>{const st=state();st.answers[el.dataset.m11Answer]=el.value;save();});
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkItem(Number(el.dataset.m11Answer));}});
+    });
+    qa('[data-m11-check]').forEach(b=>b.addEventListener('click',()=>checkItem(Number(b.dataset.m11Check))));
+    qa('[data-m11-analysis]').forEach(b=>b.addEventListener('click',()=>checkAnalysis(Number(b.dataset.m11Analysis))));
+    q('#resetMission11Btn')?.addEventListener('click',()=>resetM11(true));
+  }
+
+  function itemByNo(no){return M11_ITEMS.find(x=>x.no===Number(no));}
+
+  function checkItem(no){
+    const item=itemByNo(no);if(!item)return;
+    const input=q(`[data-m11-answer="${no}"]`);const fb=q(`[data-m11-feedback="${no}"]`);const diag=q(`[data-m11-diag="${no}"]`);
+    const ans=input?.value||'';const a=norm(ans);
+    const st=state();st.answers[no]=ans;st.tries=(st.tries||0)+1;
+    if(item.verbOK(a) && fullEnough(a)){
+      st.validated[no]=true;st.analysis[no]=st.analysis[no]||{};save();
+      const card=q(`[data-m11="${no}"]`);card?.classList.add('ok');
+      if(input){input.disabled=true;input.setAttribute('aria-invalid','false');}
+      const check=q(`[data-m11-check="${no}"]`);if(check){check.disabled=true;check.textContent='✓ Validated';}
+      diag?.classList.add('hidden');
+      if(fb){fb.className='m11-feedback good';fb.textContent='✓ Correct verbal group. Minor spelling or wording slips elsewhere are accepted.';}
+      const model=q(`[data-m11-model="${no}"]`);if(model){model.classList.remove('hidden');model.innerHTML=`<strong>Model sentence:</strong> ${item.model}`;}
+      updateProgress();
+      if(typeof beep==='function')beep(760,.06);
+      return;
+    }
+    save();
+    if(item.verbOK(a) && !fullEnough(a)){
+      if(fb){fb.className='m11-feedback neutral';fb.textContent='Your verb form is correct. Write a complete sentence before validating it; spelling elsewhere does not need to be perfect.';}
+      return;
+    }
+    if(input)input.setAttribute('aria-invalid','true');
+    if(fb){fb.className='m11-feedback bad';fb.textContent='The verbal group needs another look. Analyse the original verb and tense below before trying again.';}
+    diag?.classList.remove('hidden');
+    q(`[data-m11-mainverb="${no}"]`)?.focus();
+    if(typeof beep==='function')beep(260,.06);
+  }
+
+  function checkAnalysis(no){
+    const item=itemByNo(no);if(!item)return;
+    const v=q(`[data-m11-mainverb="${no}"]`)?.value||'';
+    const t=norm(q(`[data-m11-tense="${no}"]`)?.value||'');
+    const out=q(`[data-m11-diagfeedback="${no}"]`);
+    const vok=mainVerbOK(v,item), tok=t===norm(item.tense);
+    const st=state();st.analysis[no]={verb:v,tense:t,correct:vok&&tok};save();
+    if(vok&&tok){
+      const formula=item.target==='passive'?'Now keep that tense and build: BE in the correct tense + past participle.':'Now keep that tense, make the agent the subject, and conjugate the main verb in the active voice.';
+      if(out){out.style.color='#3f6f50';out.innerHTML=`✓ Good analysis. <strong>${formula}</strong> Then try your sentence again.`;}
+      q(`[data-m11-answer="${no}"]`)?.focus();
+    }else{
+      const parts=[];if(!vok)parts.push('main verb');if(!tok)parts.push('tense');
+      if(out){out.style.color='#9b3f31';out.textContent=`Not yet — reconsider the ${parts.join(' and ')} in the original sentence.`;}
+    }
+  }
+
+  function restore(){
+    const st=state();
+    M11_ITEMS.forEach(item=>{
+      const no=item.no,input=q(`[data-m11-answer="${no}"]`),card=q(`[data-m11="${no}"]`),check=q(`[data-m11-check="${no}"]`),fb=q(`[data-m11-feedback="${no}"]`),model=q(`[data-m11-model="${no}"]`);
+      if(input && st.answers?.[no]!==undefined)input.value=st.answers[no];
+      if(st.validated?.[no]){
+        card?.classList.add('ok');if(input)input.disabled=true;if(check){check.disabled=true;check.textContent='✓ Validated';}
+        if(fb){fb.className='m11-feedback good';fb.textContent='✓ Correct verbal group. Minor spelling or wording slips elsewhere are accepted.';}
+        if(model){model.classList.remove('hidden');model.innerHTML=`<strong>Model sentence:</strong> ${item.model}`;}
+      }else{
+        card?.classList.remove('ok');if(input)input.disabled=false;if(check){check.disabled=false;check.textContent='Check';}model?.classList.add('hidden');
+      }
+    });
+  }
+
+  function updateProgress(){
+    const n=validatedCount(),p=pct(),s=stars();
+    const score=q('#m11Score'),star=q('#m11Stars'),bar=q('#m11Bar'),done=q('#m11Complete');
+    if(score)score.textContent=`${n} / 15`;
+    if(star)star.textContent=`${starStringLocal(s)} · ${p}%`;
+    if(bar)bar.style.width=p+'%';
+    if(done)done.classList.toggle('hidden',n<15);
+    const st=state();
+    const newlyComplete=n===15 && !st.completed;
+    st.completed=n===15;save();
+    if(newlyComplete && typeof trackMissionAttempt==='function')trackMissionAttempt('m11',100,true,{validated:15,total:15,focus:'active/passive verbal groups'});
+    if(typeof renderMissionDock==='function' && document.body?.dataset?.m11Updating!=='1'){
+      // Dock updates are triggered elsewhere too; no recursive call here.
+    }
+  }
+
+  function resetM11(ask){
+    if(ask && !confirm('Redo Submission 11? Your current answers for this grammar activity will be reset.'))return;
+    if(typeof activeProfile!=='undefined' && activeProfile){activeProfile.m11={answers:{},validated:{},analysis:{},completed:false,tries:0};save();}
+    else window.__m11State={answers:{},validated:{},analysis:{},completed:false,tries:0};
+    const grid=q('#m11Grid');if(grid){grid.dataset.built='';grid.innerHTML='';}
+    render();
+    if(typeof renderMissionDock==='function')renderMissionDock();
+  }
+
+  function wireIntoCourse(){
+    if(typeof MISSION_META!=='undefined' && Array.isArray(MISSION_META) && !MISSION_META.some(m=>m.id===M11_ID))MISSION_META.push(M11_META);
+
+    if(typeof missionExtra==='function' && !window.__m11MissionExtraWrapped){
+      const old=missionExtra;
+      missionExtra=function(id){if(id==='m11'){const n=validatedCount(),p=pct();return `${starStringLocal(stars())} · ${n}/15 validated · ${p}%`;}return old(id);};
+      window.__m11MissionExtraWrapped=true;
+    }
+    if(typeof chapterMissionPercent==='function' && !window.__m11ChapterWrapped){
+      const old=chapterMissionPercent;
+      chapterMissionPercent=function(id){if(id==='m11')return pct();return old(id);};
+      window.__m11ChapterWrapped=true;
+    }
+    if(typeof syncMissionVisibility==='function' && !window.__m11SyncWrapped){
+      const old=syncMissionVisibility;
+      syncMissionVisibility=function(selected=null){old(selected);const el=q('#bearsEarsPassiveMission');if(el)el.classList.toggle('hidden',selected!=='m11');};
+      window.__m11SyncWrapped=true;
+    }
+    if(typeof openMission==='function' && !window.__m11OpenWrapped){
+      const old=openMission;
+      openMission=function(id){
+        if(id!=='m11')return old(id);
+        const card=q('#chapter01Card'),toggle=q('#chapter01Toggle');if(card){card.classList.add('open');if(toggle)toggle.setAttribute('aria-expanded','true');}
+        if(typeof activeMission!=='undefined')activeMission='m11';
+        if(typeof activeProfile!=='undefined'&&activeProfile){activeProfile.lastMission='m11';save();if(typeof trackMissionStarted==='function')trackMissionStarted('m11');}
+        if(typeof show==='function')show('screen3',false);
+        if(typeof syncMissionVisibility==='function')syncMissionVisibility('m11');
+        render();
+        if(typeof renderMissionDock==='function')renderMissionDock();
+        requestAnimationFrame(()=>requestAnimationFrame(()=>q('#bearsEarsPassiveMission')?.scrollIntoView({behavior:'auto',block:'start'})));
+      };
+      window.__m11OpenWrapped=true;
+    }
+    if(typeof restorePersonalProgress==='function' && !window.__m11RestoreWrapped){
+      const old=restorePersonalProgress;
+      restorePersonalProgress=function(){old();restore();updateProgress();};
+      window.__m11RestoreWrapped=true;
+    }
+  }
+
+  function init(){
+    injectStyle();injectMission();wireIntoCourse();render();
+    q('#resetBtn')?.addEventListener('click',()=>resetM11(false));
+    if(typeof renderMissionDock==='function')renderMissionDock();
+  }
+
+  init();
+})();
+
 </script>
 </body>
 </html>
