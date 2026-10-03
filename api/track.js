@@ -21,7 +21,7 @@ export default async function handler(req,res){
     const group=clean(b.group||b.class||b.className,60);
     const studentKey=clean(b.studentKey,120);
     if(!name || !group || !studentKey)return res.status(400).json({error:'Missing learner identity'});
-    const mission=b.mission && /^m(?:[1-9]|10)$/i.test(String(b.mission))?String(b.mission).toLowerCase():null;
+    const mission=b.mission && /^m(?:[1-9]|1[0-2])$/i.test(String(b.mission))?String(b.mission).toLowerCase():null;
     const raw=Number(b.score);const score=(b.score===null||b.score===undefined||!Number.isFinite(raw))?null:Math.max(0,Math.min(100,Math.round(raw)));
     const event={type,mission,studentKey,name,group,score,completed:!!b.completed,details:safeDetails(b.details),clientTime:clean(b.clientTime,40)||null,serverTime:new Date().toISOString(),appVersion:clean(b.appVersion,20)||null};
     const id=(globalThis.crypto?.randomUUID?.() || Math.random().toString(36).slice(2));
